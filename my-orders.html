@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders - MS MART</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <style>
+    /* 🔴 BODY GLOBAL */
+    body { 
+        margin: 0; 
+        font-family: 'Poppins', sans-serif; 
+        background: #F4F7F9; 
+        padding-top: 70px; /* Header Space */
+    }
+
+    /* 🔴 FIXED TOP BAR */
+    .topbar {
+      background: #0dbefd; padding: 0 15px; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+      z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      box-sizing: border-box;
+    }
+    .menu-icon { font-size: 24px; cursor: pointer; margin-right: 10px; position: relative; z-index: 1001; }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: absolute; 
+        left: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
+    }
+    .logo-img { height: 70px; width: auto; object-fit: contain; }
+
+    .top-right { display: flex; align-items: center; gap: 15px; }
+    .icon-btn { cursor: pointer; font-size: 20px; color: white; text-decoration: none; }
+
+    .login-btn {
+        color: white; text-decoration: none; font-size: 13px; font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.6); padding: 5px 15px;
+        border-radius: 20px; transition: 0.3s;
+    }
+    .login-btn:hover { background: white; color: #111; border-color: white; }
+
+    /* SIDE MENU */
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 2000;
+      top: 0; left: 0; background-color: #111;
+      overflow-x: hidden; transition: 0.3s; padding-top: 60px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    }
+    .sidenav a { padding: 10px 15px 10px 32px; text-decoration: none; font-size: 16px; color: #ccc; display: block; border-bottom: 1px solid #222; }
+    .sidenav a:hover { color: #fff; background: #0a8; }
+    .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; border:none !important; background: transparent; color: white; }
+
+    /* Cart Badge */
+    .cart-badge { position: absolute; top: -8px; right: -10px; background: red; color: white; font-size: 10px; padding: 2px 5px; border-radius: 50%; font-weight: bold; display: none; }
+
+    /* --- ORDER PAGE STYLES --- */
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; min-height: 60vh; }
+    .login-box { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; margin-top: 20px; }
+    .input-field { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; margin-bottom: 10px; }
+    .find-btn { width: 100%; background: #0a8; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+    .order-card { background: white; border-radius: 10px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee; }
+    .order-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 10px; }
+    .order-date { font-size: 12px; color: #777; }
+    .order-status { font-size: 12px; font-weight: bold; padding: 3px 8px; border-radius: 15px; }
+    
+    .status-Pending, .status-Processing { background: #fff3cd; color: #856404; }
+    .status-Shipped { background: #d1ecf1; color: #0c5460; }
+    .status-Delivered { background: #d4edda; color: #155724; }
+
+    .item-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: center; }
+    .item-img { width: 50px; height: 50px; object-fit: contain; border-radius: 5px; border: 1px solid #eee; }
+    .item-info { flex-grow: 1; }
+    .item-name { font-size: 14px; font-weight: 600; color: #333; }
+    .item-meta { font-size: 12px; color: #666; }
+
+    .order-footer { border-top: 1px dashed #ddd; padding-top: 10px; margin-top: 5px; display: flex; justify-content: space-between; align-items: center; }
+    .total-price { font-size: 16px; font-weight: bold; color: #0a8; }
+
+    /* 🚚 TRACKING BUTTON STYLE */
+    .track-btn {
+        display: block; width: 100%; text-align: center; background: #007bff; color: white;
+        text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 15px;
+        font-weight: bold; font-size: 14px; transition: 0.3s;
+    }
+    .track-btn:hover { background: #0056b3; }
+
+    /* FOOTER */
+    .site-footer { background-color: #111; color: #fff; padding: 40px 20px 20px; margin-top: 50px; text-align: center; }
+    .footer-logo-img { height: 70px; width: auto; margin-bottom: 15px; object-fit: contain; }
+    .footer-links { list-style: none; padding: 0; margin: 25px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+    .footer-links li a { color: #ddd; text-decoration: none; font-size: 14px; transition: 0.3s; }
+    .footer-links li a:hover { color: #0dbefd; }
+  </style>
+</head>
+
+<body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h3 style="color:white; padding-left:30px; margin-bottom: 20px;">MS MART</h3>
+    <a href="index.html">🏠 Home</a>
+    <a href="my-orders.html">📦 My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+    <a href="contact.html">📞 Contact Us</a>
+    <a href="about.html">ℹ️ About Us</a>
+    <a href="terms.html">📄 Terms & Conditions</a>
+    <a href="refund.html">💸 Refund Policy</a>
+  </div>
+
+  <div class="topbar">
+    <div style="display:flex; align-items:center;">
+        <span class="menu-icon" onclick="openNav()">&#9776;</span>
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+        </a>
+    </div>
+    <div class="top-right">
+      <a href="#" class="icon-btn">🔍</a> 
+      <a href="login.html" class="login-btn">Login</a> 
+      <a href="cart.html" class="icon-btn" style="position: relative;">
+          🛒 <span id="cartCountBadge" class="cart-badge">0</span>
+      </a> 
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 style="margin-bottom:20px;">My Orders</h2>
+
+    <div id="loginSection" class="login-box">
+        <h3 style="margin-top:0;">Track Your Orders</h3>
+        <p style="font-size:13px; color:#666;">Enter the mobile number used during checkout.</p>
+        <div style="display:flex; gap:10px;">
+            <select id="countryCode" style="padding:10px; border-radius:8px; border:1px solid #ddd;">
+                <option value="+91">+91 (IN)</option>
+                <option value="+1">+1 (US)</option>
+            </select>
+            <input type="tel" id="mobileInput" class="input-field" placeholder="Mobile Number">
+        </div>
+        <br>
+        <button class="find-btn" onclick="fetchOrders()">Find My Orders</button>
+    </div>
+
+    <div id="ordersList" style="display:none;"></div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+        <img src="images/logo.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'">
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="refund.html">Refund Policy</a></li>
+        </ul>
+    </div>
+    <p>&copy; 2025 MS MART. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+    
+    let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+    let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+    const badge = document.getElementById("cartCountBadge");
+    if(badge) { badge.innerText = totalCount; badge.style.display = totalCount > 0 ? "block" : "none"; }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAb7lILQF-Cd27aKmRJ2mOoEUtiMsYgcww",
+  authDomain: "msmart-2ce7c.firebaseapp.com",
+  projectId: "msmart-2ce7c",
+  storageBucket: "msmart-2ce7c.firebasestorage.app",
+  messagingSenderId: "844751147092",
+  appId: "1:844751147092:web:89ed978077d83622765dc1",
+  measurementId: "G-HXH0HPHE0W"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.fetchOrders = async () => {
+        const mobile = document.getElementById("mobileInput").value.trim();
+        const code = document.getElementById("countryCode").value;
+        const container = document.getElementById("ordersList");
+        const loginSection = document.getElementById("loginSection");
+
+        if(mobile.length !== 10) { alert("Enter valid mobile number"); return; }
+        const fullMobile = code + " " + mobile; 
+        document.querySelector(".find-btn").innerText = "Searching...";
+
+        try {
+            const q = query(collection(db, "orders"), where("mobile", "==", fullMobile));
+            const querySnapshot = await getDocs(q);
+            container.innerHTML = "";
+
+            if(querySnapshot.empty) {
+                container.innerHTML = `<p style='text-align:center; margin-top:50px; color:#777;'>No orders found.</p> <center><button onclick="location.reload()" class="find-btn" style="width:auto;">Try Again</button></center>`;
+            } else {
+                querySnapshot.forEach((doc) => {
+                    const order = doc.data();
+                    let itemsHtml = "";
+                    order.items.forEach(item => {
+                        itemsHtml += `<div class="item-row"><img src="${item.image}" class="item-img" onerror="this.src='https://via.placeholder.com/50'"><div class="item-info"><div class="item-name">${item.name}</div><div class="item-meta">Qty: ${item.qty} | ₹${item.price}</div></div></div>`;
+                    });
+
+                    let statusText = order.status === "Pending" ? "Processing" : order.status; 
+                    
+                    // 🔴 TRACKING LINK LOGIC
+                    let trackingHtml = "";
+                    if (order.trackingLink && order.trackingLink !== "") {
+                        trackingHtml = `<a href="${order.trackingLink}" target="_blank" class="track-btn"><i class="fas fa-truck"></i> Track Your Order</a>`;
+                    }
+
+                    container.innerHTML += `
+                        <div class="order-card">
+                            <div class="order-header">
+                                <div class="order-date">Date: ${order.date}</div>
+                                <div class="order-status status-${statusText}">${statusText}</div>
+                            </div>
+                            <div class="order-items">${itemsHtml}</div>
+                            <div class="order-footer">
+                                <span>Total Amount</span>
+                                <span class="total-price">₹${order.totalAmount}</span>
+                            </div>
+                            ${trackingHtml} 
+                        </div>`;
+                });
+            }
+            loginSection.style.display = "none"; container.style.display = "block";
+        } catch (error) { alert("Error: " + error.message); document.querySelector(".find-btn").innerText = "Find My Orders"; }
+    }
+  </script>
+
+</body>
+</html>

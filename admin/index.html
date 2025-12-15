@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard – MS MART</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+<style>
+  body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #eef1f4; }
+
+  /* TOP BAR */
+  .topbar {
+    background: #111; padding: 14px; color: #fff;
+    display: flex; align-items: center; position: fixed;
+    width: 100%; top: 0; z-index: 1000; box-sizing: border-box;
+  }
+  .menu-btn { font-size: 24px; margin-right: 15px; cursor: pointer; user-select: none; }
+
+  /* SIDEBAR (LEFT MENU) */
+  .left-menu {
+    width: 250px; background: #222; color: white; position: fixed;
+    height: 100vh; top: 0; left: -250px; transition: 0.3s;
+    padding-top: 60px; z-index: 999; box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  }
+  .left-menu.show { left: 0; }
+  .left-menu a, .left-menu div {
+    text-decoration: none; color: white; display: block;
+    padding: 15px 20px; border-bottom: 1px solid #333; transition: 0.2s;
+  }
+  .left-menu a:hover { background: #333; padding-left: 25px; }
+
+  /* DASHBOARD CONTENT */
+  .dashboard { margin-top: 80px; padding: 20px; transition: 0.3s; }
+  .box-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+  
+  .box {
+    background: #fff; padding: 25px; width: 220px;
+    border-radius: 15px; text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-bottom: 4px solid #0a8;
+  }
+  .box i { font-size: 30px; color: #0a8; margin-bottom: 10px; }
+  .box h3 { margin: 0 0 10px; color: #555; font-size: 16px; }
+  .box p { font-size: 28px; font-weight: bold; margin: 0; color: #111; }
+
+  .logout-btn { background: crimson; text-align: center; cursor: pointer; margin-top: 20px; }
+  .logout-btn:hover { background: #b30000; }
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <span class="menu-btn" id="toggleBtn">☰</span>
+  <h3 style="margin:0;">Admin Dashboard – MS MART</h3>
+</div>
+
+<div id="sideMenu" class="left-menu">
+  <a href="admin-offers.html">🏷 Offers</a>
+  <a href="admin-categories.html">📂 Categories</a>
+  <a href="admin-banner.html">🖼 Banner Styles</a>
+  <a href="admin-orders.html">📦 Orders</a>
+  <a href="admin-tracking.html">🚚 Tracking</a>
+  <div class="logout-btn" id="logoutBtn">Logout</div>
+</div>
+
+<div class="dashboard">
+  <h2>Overview</h2>
+
+  <div class="box-grid">
+    <div class="box">
+      <i class="fas fa-calendar-day"></i>
+      <h3>Today Orders</h3>
+      <p id="todayCount">0</p>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-shopping-bag"></i>
+      <h3>Total Orders</h3>
+      <p id="totalCount">0</p>
+    </div>
+
+    <div class="box">
+      <i class="fas fa-truck"></i>
+      <h3>In Tracking</h3>
+      <p id="trackCount">0</p>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+  // Firestore functions for real-time tracking
+  import { getFirestore, collection, onSnapshot, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAb7lILQF-Cd27aKmRJ2mOoEUtiMsYgcww",
+  authDomain: "msmart-2ce7c.firebaseapp.com",
+  projectId: "msmart-2ce7c",
+  storageBucket: "msmart-2ce7c.firebasestorage.app",
+  messagingSenderId: "844751147092",
+  appId: "1:844751147092:web:89ed978077d83622765dc1",
+  measurementId: "G-HXH0HPHE0W"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // SECURITY CHECK
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      const adminEmail = "msr.subbarao5@gmail.com"; 
+      if(user.email !== adminEmail) {
+         signOut(auth);
+         window.location.href = "admin-login.html";
+      }
+    } else {
+      window.location.href = "admin-login.html";
+    }
+  });
+
+  // REAL-TIME DATA FETCHING
+  function startDashboardCounters() {
+    const ordersCol = collection(db, "orders");
+
+    // 1. Total Orders & Tracking Count & Today Orders
+    onSnapshot(ordersCol, (snapshot) => {
+      let total = 0;
+      let tracking = 0;
+      let today = 0;
+
+      // Get Today's Date String (matches the format in your order saving logic)
+      const todayDate = new Date().toLocaleDateString();
+
+      snapshot.forEach((doc) => {
+        const data = doc.data();
+        total++;
+
+        // Tracking Count: Check if trackingLink exists and is not empty
+        if (data.trackingLink && data.trackingLink !== "") {
+          tracking++;
+        }
+
+        // Today Orders: Check if order date contains today's date
+        // Note: Make sure your orders are saved with .toLocaleDateString() or similar
+        if (data.date && data.date.includes(todayDate)) {
+          today++;
+        }
+      });
+
+      // Update UI
+      document.getElementById("totalCount").innerText = total;
+      document.getElementById("trackCount").innerText = tracking;
+      document.getElementById("todayCount").innerText = today;
+    });
+  }
+
+  // LOGOUT
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    if(confirm("Logout?")) {
+      signOut(auth).then(() => {
+        window.location.href = "admin-login.html";
+      });
+    }
+  });
+
+  // MENU TOGGLE
+  document.getElementById("toggleBtn").onclick = () => {
+    document.getElementById("sideMenu").classList.toggle("show");
+  };
+
+  // Start counters on load
+  startDashboardCounters();
+
+</script>
+
+</body>
+</html>

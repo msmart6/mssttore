@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manage Categories - MS MART</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+<style>
+  :root { --primary: #0a8; --dark: #111; --gray: #f4f7f9; --danger: #e74c3c; --info: #3498db; }
+  body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray); }
+    
+  /* --- HEADER STYLES --- */
+  .header { 
+    background: var(--dark); color: #fff; padding: 15px; 
+    display: flex; align-items: center; gap: 15px;
+    position: sticky; top:0; z-index: 1000;
+  }
+  .menu-btn { font-size: 24px; cursor: pointer; user-select: none; }
+
+  /* SIDEBAR (LEFT MENU) */
+  .left-menu {
+    width: 250px; background: #222; color: white; position: fixed;
+    height: 100vh; top: 0; left: -250px; transition: 0.3s;
+    padding-top: 60px; z-index: 999; box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+  }
+  .left-menu.show { left: 0; }
+  .left-menu a, .left-menu div {
+    text-decoration: none; color: white; display: block;
+    padding: 15px 20px; border-bottom: 1px solid #333; transition: 0.2s;
+  }
+  .left-menu a:hover { background: #333; padding-left: 25px; }
+  .logout-btn { background: crimson; text-align: center; cursor: pointer; margin-top: 20px; }
+
+  /* --- GRID STYLES --- */
+  .container { padding: 20px; max-width: 800px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; }
+
+  /* ADD BOX (+) */
+  .add-box {
+    height: 180px; border: 2px dashed var(--primary); background: #e0f7fa;
+    border-radius: 12px; display: flex; justify-content: center; align-items: center;
+    cursor: pointer; flex-direction: column; transition: 0.2s;
+  }
+  .add-box:hover { background: #b2ebf2; }
+  .plus-sign { font-size: 40px; color: #00796b; }
+  .add-text { color: #00796b; font-size: 14px; font-weight: bold; }
+
+  /* CATEGORY CARD */
+  .card {
+    background: #fff; border-radius: 12px; height: 180px;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); position: relative;
+    cursor: pointer; transition: transform 0.2s; overflow: hidden; padding-top: 20px;
+  }
+  .card:hover { transform: translateY(-5px); }
+  .card h4 { margin: 10px 0; color: #333; font-size: 15px; }
+  .cat-img { width: 70px; height: 70px; object-fit: contain; }
+  
+  /* EDIT BUTTON */
+  .edit-btn {
+     position: absolute; top: 8px; left: 8px; color: var(--info); 
+     cursor: pointer; font-size: 16px; z-index: 10;
+     background: rgba(255, 255, 255, 0.9); width: 28px; height: 28px;
+     display: flex; align-items: center; justify-content: center; border-radius: 50%;
+     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* DELETE BUTTON (BOTTOM) */
+  .delete-section {
+      width: 100%; background: #fff0f0; padding: 8px 0;
+      text-align: center; color: var(--danger); font-size: 12px;
+      font-weight: bold; border-top: 1px solid #fee;
+      transition: 0.3s;
+  }
+  .delete-section:hover { background: var(--danger); color: white; }
+
+  /* --- MODAL STYLES --- */
+  .modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); justify-content: center; align-items: center; z-index: 2000;
+  }
+  .modal-box { 
+    background: white; padding: 25px; width: 90%; max-width: 450px; 
+    border-radius: 15px; animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal-split { display: flex; gap: 20px; align-items: center; margin-top: 15px; }
+  .img-preview-box {
+    width: 100px; height: 100px; border: 2px dashed #ccc; border-radius: 10px;
+    display: flex; justify-content: center; align-items: center;
+    cursor: pointer; background: #f9f9f9; overflow: hidden;
+  }
+  .img-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+  .right-side { flex: 1; }
+  .right-side input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+
+  .modal-btns { margin-top: 25px; display: flex; gap: 10px; }
+  .btn { flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+  .save { background: var(--primary); color: white; }
+  .close { background: #eee; color: #666; }
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <span class="menu-btn" id="toggleBtn">☰</span>
+  <h3 style="margin:0">Manage Categories</h3>
+</div>
+
+<div id="sideMenu" class="left-menu">
+  <a href="index.html">🏠 Dashboard</a>
+  <a href="admin-offers.html">🏷 Offers</a>
+  <a href="admin-categories.html" style="background: #333;">📂 Categories</a>
+  <a href="admin-banner.html">🖼 Banner Styles</a>
+  <a href="admin-orders.html">📦 Orders</a>
+  <a href="admin-tracking.html">🚚 Tracking</a>
+  <div class="logout-btn" id="logoutBtn">Logout</div>
+</div>
+
+<div class="container">
+  <div class="grid" id="catGrid">
+    <div class="add-box" onclick="openModal()">
+      <div class="plus-sign">+</div>
+      <div class="add-text">Add New</div>
+    </div>
+  </div>
+</div>
+
+<div id="categoryModal" class="modal-overlay">
+  <div class="modal-box">
+    <h3 id="modalTitle" style="margin:0; color:#333;">Add Category</h3>
+    
+    <div class="modal-split">
+      <div class="left-side">
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        <div class="img-preview-box" id="dropArea">
+          <span id="placeholderText" style="font-size:12px; color:#888; text-align:center;">Upload<br>Image</span>
+          <img id="previewImg" style="display:none;">
+        </div>
+      </div>
+
+      <div class="right-side">
+        <label style="font-size:12px; font-weight:bold; color:#555;">CATEGORY NAME</label>
+        <input type="text" id="catName" placeholder="Ex: Vegetables">
+        <input type="hidden" id="editId">
+      </div>
+    </div>
+
+    <div class="modal-btns">
+      <button class="btn close" onclick="closeModal()">Cancel</button>
+      <button class="btn save" id="saveBtn">Save Category</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+  import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAb7lILQF-Cd27aKmRJ2mOoEUtiMsYgcww",
+  authDomain: "msmart-2ce7c.firebaseapp.com",
+  projectId: "msmart-2ce7c",
+  storageBucket: "msmart-2ce7c.firebasestorage.app",
+  messagingSenderId: "844751147092",
+  appId: "1:844751147092:web:89ed978077d83622765dc1",
+  measurementId: "G-HXH0HPHE0W"
+};
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user || user.email !== "msr.subbarao5@gmail.com") {
+      window.location.href = "admin-login.html";
+    }
+  });
+
+  const sideMenu = document.getElementById("sideMenu");
+  document.getElementById("toggleBtn").onclick = () => sideMenu.classList.toggle("show");
+  document.getElementById("logoutBtn").onclick = () => signOut(auth).then(() => window.location.href = "admin-login.html");
+
+  const modal = document.getElementById("categoryModal");
+  const nameInput = document.getElementById("catName");
+  const editIdInput = document.getElementById("editId");
+  const previewImg = document.getElementById("previewImg");
+  const placeholderText = document.getElementById("placeholderText");
+  const fileInput = document.getElementById("fileInput");
+
+  window.openModal = (id = null) => { 
+    modal.style.display = "flex"; 
+    if(!id) {
+        document.getElementById("modalTitle").innerText = "Add Category";
+        nameInput.value = ""; 
+        editIdInput.value = "";
+        previewImg.style.display = "none";
+        placeholderText.style.display = "block";
+    }
+  }
+  
+  window.closeModal = () => { modal.style.display = "none"; }
+
+  document.getElementById("dropArea").onclick = () => fileInput.click();
+
+  fileInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        previewImg.src = event.target.result;
+        previewImg.style.display = "block";
+        placeholderText.style.display = "none";
+      }
+      reader.readAsDataURL(file);
+    }
+  }
+
+  document.getElementById("saveBtn").onclick = async () => {
+    const name = nameInput.value.trim();
+    const id = editIdInput.value;
+    const currentImg = previewImg.src;
+
+    if (!name) return alert("Enter name!");
+
+    const btn = document.getElementById("saveBtn");
+    btn.innerText = "Saving..."; btn.disabled = true;
+
+    try {
+        if(id) {
+            await updateDoc(doc(db, "categories", id), { name, image: currentImg });
+            alert("Updated!");
+        } else {
+            await addDoc(collection(db, "categories"), { 
+                name, 
+                image: currentImg || "https://cdn-icons-png.flaticon.com/512/3082/3082031.png", 
+                date: new Date() 
+            });
+            alert("Added!");
+        }
+        location.reload();
+    } catch(e) { alert(e.message); btn.disabled = false; btn.innerText = "Save Category"; }
+  };
+
+  async function loadCategories() {
+    const querySnapshot = await getDocs(collection(db, "categories"));
+    const grid = document.getElementById("catGrid");
+    querySnapshot.forEach((docSnap) => {
+      const data = docSnap.data();
+      const div = document.createElement("div");
+      div.className = "card";
+      // ప్రొడక్ట్స్ పేజీకి వెళ్లడానికి మెయిన్ క్లిక్
+      div.onclick = () => {
+        window.location.href = `admin-add-product.html?catId=${docSnap.id}&catName=${encodeURIComponent(data.name)}`;
+      };
+
+      div.innerHTML = `
+        <div class="edit-btn" onclick="editCategory(event, '${docSnap.id}')">
+            <i class="fas fa-pencil-alt"></i>
+        </div>
+        <img src="${data.image}" class="cat-img">
+        <h4>${data.name}</h4>
+        <div class="delete-section" onclick="deleteCategory(event, '${docSnap.id}')">
+            REMOVE CATEGORY
+        </div>
+      `;
+      grid.appendChild(div);
+    });
+  }
+
+  window.editCategory = async (event, id) => {
+    event.stopPropagation();
+    openModal(id);
+    document.getElementById("modalTitle").innerText = "Edit Category";
+    const docSnap = await getDoc(doc(db, "categories", id));
+    if(docSnap.exists()){
+        const data = docSnap.data();
+        nameInput.value = data.name;
+        editIdInput.value = id;
+        previewImg.src = data.image;
+        previewImg.style.display = "block";
+        placeholderText.style.display = "none";
+    }
+  }
+
+  window.deleteCategory = async (event, id) => {
+    event.stopPropagation();
+    if(confirm("Are you sure? All products in this category might be affected!")) {
+      await deleteDoc(doc(db, "categories", id));
+      location.reload();
+    }
+  }
+
+  loadCategories();
+</script>
+
+</body>
+</html>

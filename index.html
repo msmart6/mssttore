@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MS MART – Online Shopping</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    /* 🔴 BODY & GLOBAL */
+    html, body { 
+        margin: 0; padding: 0; width: 100%; font-family: 'Poppins', sans-serif; 
+        background: #F4F7F9; overflow-x: hidden; padding-top: 70px; 
+    }
+
+    /* 🔴 FIXED TOP BAR */
+    .topbar {
+      background: #0dbefd; padding: 0 15px; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+      z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      box-sizing: border-box;
+    }
+    .menu-icon { font-size: 24px; cursor: pointer; margin-right: 10px; position: relative; z-index: 1001; }
+
+    /* 🔴 LOGO CONTAINER */
+    .logo-container {
+        display: flex; align-items: center; text-decoration: none;
+        position: absolute; left: 50px; top: 50%; transform: translateY(-50%); z-index: 1002;
+    }
+    .logo-img { height: 70px; width: auto; object-fit: contain; }
+
+    .top-right { display: flex; align-items: center; gap: 15px; }
+    .icon-btn { cursor: pointer; font-size: 20px; color: white; text-decoration: none; border:none; background:none; }
+
+    /* 🔴 LOGIN BUTTON STYLE */
+    .login-btn {
+        color: white; text-decoration: none; font-size: 13px; font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.6); padding: 5px 15px;
+        border-radius: 20px; transition: 0.3s;
+    }
+    .login-btn:hover { background: white; color: #111; border-color: white; }
+
+    /* 🔴 USER NAME STYLE */
+    .user-profile-box {
+        display: flex; align-items: center; gap: 8px; cursor: pointer;
+        background: #e5df02; padding: 5px 12px; border-radius: 20px; border: 1px solid #333;
+    }
+    .user-text { font-size: 13px; color: #000000; font-weight: bold; }
+    .logout-icon { font-size: 12px; color: #ff4444; }
+
+    /* SIDE MENU */
+    .sidenav {
+      height: 100%; width: 0; position: fixed; z-index: 2000;
+      top: 0; left: 0; background-color: #111;
+      overflow-x: hidden; transition: 0.3s; padding-top: 60px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    }
+    .sidenav a {
+      padding: 10px 15px 10px 32px; text-decoration: none;
+      font-size: 16px; color: #ccc; display: block; transition: 0.3s;
+      border-bottom: 1px solid #222;
+    }
+    .sidenav a:hover { color: #fff; background: #0a8; }
+    .closebtn { position: absolute; top: 0; right: 25px; font-size: 36px; border:none !important; background: transparent; color: white; }
+
+    /* SEARCH OVERLAY - New Feature */
+    .search-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255,255,255,0.98); z-index: 3000;
+      display: none; flex-direction: column; padding: 20px; box-sizing: border-box;
+    }
+    .search-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+    #searchInput {
+      flex: 1; padding: 12px 15px; border: 2px solid #0dbefd; border-radius: 8px;
+      font-size: 16px; outline: none;
+    }
+    .close-search { font-size: 24px; color: #333; cursor: pointer; }
+
+    /* BANNER */
+    .banner {
+      background: white; margin: 15px; border-radius: 12px; padding: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1); box-sizing: border-box;
+      max-width: calc(100% - 30px);
+    }
+    .banner-text h2 { margin: 0; color: #333; font-size: 20px; }
+    .banner-text p { color: #ff6b00; font-weight: bold; font-size: 14px; }
+    .shop-btn {
+      background: #0a8; color: white; border: none; padding: 8px 15px;
+      border-radius: 5px; font-size: 14px; cursor: pointer; margin-top: 5px;
+    }
+    .banner img { width: 80px; height: auto; }
+
+    /* CATEGORIES */
+    .festival-box {
+      background: linear-gradient(45deg, #ff8800, #ff5400);
+      margin: 15px; padding: 20px; border-radius: 12px; text-align: center; color: white;
+      box-sizing: border-box; max-width: calc(100% - 30px);
+    }
+    .cat-grid {
+      display: flex; gap: 15px; overflow-x: auto; padding-top: 10px;
+      justify-content: flex-start; scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .cat-grid::-webkit-scrollbar { display: none; }
+    .cat-item { min-width: 80px; text-align: center; cursor: pointer; }
+    .cat-img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid white; object-fit: cover; background: #fff; }
+    .cat-name { font-size: 13px; margin-top: 5px; font-weight: 500; }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+      gap: 10px; padding: 15px; width: 100%; box-sizing: border-box;
+    }
+    @media (max-width: 768px) { .product-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 10px; } }
+    @media (max-width: 400px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .product-card {
+      background: #fff; border-radius: 10px; 
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08); border: 1px solid #eee;
+      display: flex; flex-direction: column; justify-content: space-between;
+      height: 100%; overflow: hidden; box-sizing: border-box;
+    }
+    .p-img-box {
+      width: 100%; height: 100px; background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      padding: 5px; box-sizing: border-box; position: relative;
+    }
+    .product-card img { width: 100%; height: 100%; object-fit: contain; }
+    .offer-badge {
+      position: absolute; top: 4px; left: 4px; background: #ff6b00; color: white; 
+      padding: 2px 5px; font-size: 8px; border-radius: 4px; font-weight: bold; z-index: 10;
+    }
+    .p-details { padding: 8px; text-align: left; }
+    .p-name {
+      font-size: 11px; font-weight: 600; color: #333; margin: 0 0 4px 0; 
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
+    }
+    .price-row { display: flex; align-items: center; gap: 4px; margin-bottom: 6px; }
+    .old-price { font-size: 9px; color: #999; text-decoration: line-through; }
+    .new-price { font-size: 13px; color: #0a8; font-weight: bold; }
+
+    .action-row { display: flex; flex-direction: column; gap: 5px; margin-top: 5px; }
+    .qty-box {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #f4f4f4; border-radius: 4px; padding: 2px 5px; width: 100%; box-sizing: border-box;
+    }
+    .qty-btn {
+      width: 22px; height: 22px; background: white; border: 1px solid #ddd;
+      border-radius: 3px; font-weight: bold; color: #333; font-size: 14px; 
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .qty-num { font-size: 11px; font-weight: bold; color: #333; }
+    .add-cart-btn {
+      background: #111; color: white; border: none; padding: 7px 0; width: 100%;
+      border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; 
+    }
+
+    .cart-badge {
+        position: absolute; top: -8px; right: -10px; background: red; color: white; 
+        font-size: 10px; padding: 2px 5px; border-radius: 50%; font-weight: bold; display: none;
+    }
+
+    .whatsapp-float {
+        position: fixed; bottom: 20px; right: 20px; background: #25D366; width: 55px; height: 55px; 
+        border-radius: 50%; display: flex; justify-content: center; align-items: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000;
+    }
+    .whatsapp-float img { width: 30px; height: 30px; }
+
+    .site-footer {
+        background-color: #111; color: #fff; padding: 30px 15px; margin-top: 50px;
+        text-align: center; width: 100%; box-sizing: border-box;
+    }
+    .footer-logo-img { height: 100px; width: auto; margin-bottom: 10px; object-fit: contain; }
+    .footer-links {
+        list-style: none; padding: 0; margin: 20px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+    }
+    .footer-links li a { color: #ddd; text-decoration: none; font-size: 13px; }
+    .footer-bottom { border-top: 1px solid #333; margin-top: 20px; padding-top: 20px; font-size: 11px; color: #777; }
+  </style>
+</head>
+<body>
+
+  <div id="searchOverlay" class="search-overlay">
+    <div class="search-header">
+        <i class="fas fa-arrow-left close-search" onclick="toggleSearch(false)"></i>
+        <input type="text" id="searchInput" placeholder="Search for products..." oninput="searchProducts(this.value)">
+    </div>
+    <div id="searchResults" class="product-grid">
+        <!-- Search results will be populated here -->
+    </div>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h3 style="color:white; padding-left:30px; margin-bottom: 20px;">MS MART</h3>
+    <a href="index.html">🏠 Home</a>
+    <a href="my-orders.html">📦 My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+    <a href="contact.html">📞 Contact Us</a>
+    <a href="about.html">ℹ️ About Us</a>
+    <a href="terms.html">📄 Terms & Conditions</a>
+    <a href="refund.html">💸 Refund Policy</a>
+  </div>
+
+  <div class="topbar">
+    <div style="display:flex; align-items:center;">
+        <span class="menu-icon" onclick="openNav()">&#9776;</span>
+        <a href="index.html" class="logo-container">
+            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+        </a>
+    </div>
+    
+    <div class="top-right">
+      <button class="icon-btn" onclick="toggleSearch(true)">🔍</button> 
+      <div id="authBtnContainer">
+          <a href="login.html" class="login-btn">Login</a>
+      </div>
+      <a href="cart.html" class="icon-btn" style="position: relative;">
+          🛒 <span id="cartCountBadge" class="cart-badge">0</span>
+      </a> 
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="banner-text">
+      <h2>Super Fast Delivery</h2>
+      <p>Fresh Groceries & More</p>
+      <button class="shop-btn" onclick="window.scrollTo(0, 550)">Shop Now</button>
+    </div>
+    <img src="images/fast.png" alt="Delivery" onerror="this.style.display='none'">
+  </div>
+
+  <div class="festival-box">
+    <h3 style="margin-top:0;">Shop by Category</h3>
+    <div class="cat-grid" id="catContainer">
+      <p style="color:white; font-size:12px;">Loading Categories...</p>
+    </div>
+  </div>
+
+  <div class="section-title" style="padding: 0 15px; margin-top: 15px; font-weight: bold; font-size: 18px;">Latest Products</div>
+  <div class="product-grid" id="prodContainer">
+    <p style="text-align:center; width:100%; color:#777;">Loading Products...</p>
+  </div>
+
+  <a href="https://wa.me/919618341676" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Chat">
+  </a>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+        <img src="images/logo.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'">
+        <p style="font-size: 14px;">Best Quality, Best Price, Fast Delivery.</p>
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="refund.html">Refund Policy</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 MS MART. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+    
+    // Search Toggle Function
+    function toggleSearch(show) {
+        const overlay = document.getElementById("searchOverlay");
+        overlay.style.display = show ? "flex" : "none";
+        if(show) document.getElementById("searchInput").focus();
+    }
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+ const firebaseConfig = {
+  apiKey: "AIzaSyAb7lILQF-Cd27aKmRJ2mOoEUtiMsYgcww",
+  authDomain: "msmart-2ce7c.firebaseapp.com",
+  projectId: "msmart-2ce7c",
+  storageBucket: "msmart-2ce7c.firebasestorage.app",
+  messagingSenderId: "844751147092",
+  appId: "1:844751147092:web:89ed978077d83622765dc1",
+  measurementId: "G-HXH0HPHE0W"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    let allProducts = []; // To store products for searching
+
+    onAuthStateChanged(auth, (user) => {
+        const container = document.getElementById("authBtnContainer");
+        if (user) {
+            const name = user.displayName ? user.displayName.split(" ")[0] : "User";
+            container.innerHTML = `<div class="user-profile-box" onclick="logoutUser()"><span class="user-text">Hi, ${name}</span> <i class="fas fa-sign-out-alt logout-icon"></i></div>`;
+        } else {
+            container.innerHTML = `<a href="login.html" class="login-btn">Login</a>`;
+        }
+    });
+
+    window.logoutUser = () => { if(confirm("Do you want to logout?")) { signOut(auth).then(() => { location.reload(); }); } };
+
+    window.updateQty = (prodId, change) => {
+        const qtySpan = document.getElementById(`qty-${prodId}`);
+        const searchQtySpan = document.getElementById(`sqty-${prodId}`);
+        let currentQty = parseInt(qtySpan ? qtySpan.innerText : (searchQtySpan ? searchQtySpan.innerText : 1));
+        let newQty = currentQty + change;
+        if (newQty < 1) newQty = 1; 
+        if(qtySpan) qtySpan.innerText = newQty;
+        if(searchQtySpan) searchQtySpan.innerText = newQty;
+    };
+
+    window.addToCart = (id, name, rawPrice, image) => {
+        let cleanPrice = String(rawPrice).replace(/[^0-9.]/g, '');
+        let finalPrice = parseFloat(cleanPrice);
+        if (isNaN(finalPrice) || finalPrice === 0) { alert("Error: Price missing."); return; }
+        let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+        let existingItem = cart.find(item => item.id === id);
+        
+        // Check both main grid and search grid for quantity
+        const qtySpan = document.getElementById(`qty-${id}`) || document.getElementById(`sqty-${id}`);
+        const quantity = qtySpan ? parseInt(qtySpan.innerText) : 1;
+
+        if (existingItem) { existingItem.qty += quantity; } 
+        else { cart.push({ id, name, price: finalPrice, image, qty: quantity }); }
+        localStorage.setItem('ms_cart', JSON.stringify(cart));
+        updateCartBadge();
+        alert(name + " added!"); 
+    }
+
+    function updateCartBadge() {
+        let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+        let totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+        const badge = document.getElementById("cartCountBadge");
+        if(badge) { badge.innerText = totalCount; badge.style.display = totalCount > 0 ? "block" : "none"; }
+    }
+
+    window.loadProducts = async (selectedCatId = null) => {
+        const container = document.getElementById("prodContainer");
+        if(!container) return;
+        try {
+            let q = selectedCatId ? query(collection(db, "products"), where("categoryId", "==", selectedCatId)) : collection(db, "products");
+            const querySnapshot = await getDocs(q);
+            container.innerHTML = "";
+            allProducts = []; // Reset local array
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const prodObj = { id: doc.id, ...data };
+                    allProducts.push(prodObj); // Save for search
+                    renderProduct(container, prodObj, 'qty');
+                });
+            } else { container.innerHTML = "<p style='width:100%; text-align:center'>No products found.</p>"; }
+        } catch (error) { console.error(error); }
+    }
+
+    // New Helper to render product cards
+    function renderProduct(target, prod, qtyIdPrefix) {
+        const originalPrice = Math.round(prod.price * 1.2); 
+        target.innerHTML += `
+            <div class="product-card">
+                <div class="p-img-box"><span class="offer-badge">HOT</span><img src="${prod.image}" onerror="this.src='https://via.placeholder.com/150'"></div>
+                <div class="p-details">
+                    <div class="p-name">${prod.name}</div>
+                    <div class="price-row"><span class="old-price">₹${originalPrice}</span><span class="new-price">₹${prod.price}</span></div>
+                    <div class="action-row">
+                        <div class="qty-box">
+                            <button class="qty-btn" onclick="updateQty('${prod.id}', -1)">-</button>
+                            <span class="qty-num" id="${qtyIdPrefix}-${prod.id}">1</span>
+                            <button class="qty-btn" onclick="updateQty('${prod.id}', 1)">+</button>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart('${prod.id}', '${prod.name}', '${prod.price}', '${prod.image}')">ADD</button>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    // Global Search Function
+    window.searchProducts = (val) => {
+        const resultsContainer = document.getElementById("searchResults");
+        resultsContainer.innerHTML = "";
+        if(val.trim() === "") return;
+
+        const filtered = allProducts.filter(p => p.name.toLowerCase().includes(val.toLowerCase()));
+        if(filtered.length > 0) {
+            filtered.forEach(p => renderProduct(resultsContainer, p, 'sqty'));
+        } else {
+            resultsContainer.innerHTML = "<p style='color:#777; grid-column: 1/-1; text-align:center;'>No items match your search.</p>";
+        }
+    }
+
+    async function loadCategories() {
+        const container = document.getElementById("catContainer");
+        if(!container) return;
+        try {
+            const querySnapshot = await getDocs(collection(db, "categories"));
+            if (!querySnapshot.empty) {
+                container.innerHTML = `<div class="cat-item" onclick="loadProducts()"><div class="cat-img" style="background:#333;color:white;display:grid;place-items:center;">ALL</div><div class="cat-name">All</div></div>`;
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+                    const div = document.createElement("div");
+                    div.className = "cat-item";
+                    div.onclick = () => loadProducts(doc.id);
+                    div.innerHTML = `<img src="${data.image}" class="cat-img"><div class="cat-name">${data.name}</div>`;
+                    container.appendChild(div);
+                });
+            }
+        } catch(e) { console.error(e); }
+    }
+
+    updateCartBadge(); loadCategories(); loadProducts();
+  </script>
+
+</body>
+</html>
