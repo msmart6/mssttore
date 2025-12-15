@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - MS MART</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* 🔴 BODY GLOBAL */
+    body { 
+        font-family: 'Poppins', sans-serif; 
+        background-color: #f4f7f9; 
+        margin: 0; 
+        padding-top: 70px; /* Header Space */
+    }
+
+    /* 🔴 FIXED TOP BAR (Height Fixed to 65px) */
+    .topbar {
+      background: #0dbefd; padding: 0 15px; color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      position: fixed; top: 0; left: 0; width: 100%; height: 65px;
+      z-index: 1000; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      box-sizing: border-box;
+    }
+    .menu-icon { font-size: 24px; cursor: pointer; margin-right: 10px; position: relative; z-index: 1001; }
+
+    /* 🔴 INDEPENDENT LOGO STYLE (Header) */
+    .logo-container {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        position: absolute; 
+        left: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
+    }
+    .logo-img {
+        height: 70px; /* 👈 ఇక్కడ మీరు ఎంత పెంచినా బ్లూ బార్ ఎత్తు పెరగదు */
+        width: auto;
+        object-fit: contain;
+    }
+
+    .top-right { display: flex; align-items: center; gap: 15px; }
+    .icon-btn { cursor: pointer; font-size: 20px; color: white; text-decoration: none; }
+
+    /* 🔴 LOGIN BUTTON STYLE */
+    .login-btn {
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+        border: 1px solid rgba(255,255,255,0.6);
+        padding: 5px 15px;
+        border-radius: 20px;
+        transition: 0.3s;
+    }
+    .login-btn:hover {
+        background: white;
+        color: #111;
+        border-color: white;
+    }
+
+    /* 🔴 SIDE MENU */
+    .sidenav {
+      height: 100%; width: 0; 
+      position: fixed; z-index: 2000; 
+      top: 0; left: 0; background-color: #111;
+      overflow-x: hidden; transition: 0.3s; padding-top: 60px;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+    }
+    .sidenav a {
+      padding: 10px 15px 10px 32px; text-decoration: none;
+      font-size: 16px; color: #ccc; display: block; transition: 0.3s;
+      border-bottom: 1px solid #222;
+    }
+    .sidenav a:hover { color: #fff; background: #0a8; }
+    .closebtn {
+      position: absolute; top: 0; right: 25px; font-size: 36px; margin-left: 50px; 
+      border:none !important; background: transparent; color: white;
+    }
+
+    /* Cart Badge */
+    .cart-icon-box { position: relative; }
+    .cart-badge {
+        position: absolute; top: -8px; right: -10px;
+        background: red; color: white; font-size: 10px;
+        padding: 2px 5px; border-radius: 50%; font-weight: bold;
+        display: none;
+    }
+
+    /* GRADIENT BG */
+    .gradient-custom {
+      background: #6a11cb;
+      background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+      background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+      min-height: 80vh; 
+    }
+
+    /* Card Adjustments */
+    .card { border-radius: 15px; border: none; }
+    .card-header { background: white; border-bottom: 1px solid #eee; border-radius: 15px 15px 0 0 !important; }
+    
+    .bg-image img { border-radius: 10px; max-height: 150px; object-fit: contain; }
+    .form-control { text-align: center; font-weight: bold; background: white !important; }
+
+    /* Checkout Button */
+    .btn-checkout {
+        background-color: #0a8; color: white; width: 100%; font-weight: bold; padding: 12px;
+        border: none; border-radius: 8px; text-transform: uppercase;
+    }
+    .btn-checkout:hover { background-color: #00796b; color: white; }
+
+    .empty-cart-msg { text-align: center; padding: 40px; }
+
+    /* 🔴 FOOTER STYLES (Only logo.png) */
+    .footer-logo-img {
+        height: 70px;
+        width: auto;
+        margin-bottom: 15px;
+        object-fit: contain;
+    }
+    .site-footer {
+        background-color: #111; color: #fff;
+        padding: 40px 20px 20px; margin-top: 0; 
+        text-align: center;
+    }
+    .site-footer h3 { color: #0dbefd; margin-bottom: 5px; letter-spacing: 1px; }
+    .site-footer p { font-size: 13px; color: #aaa; margin-top: 0; }
+    
+    .footer-links {
+        list-style: none; padding: 0; margin: 25px 0;
+        display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+    }
+    .footer-links li a {
+        color: #ddd; text-decoration: none; font-size: 14px; transition: 0.3s;
+    }
+    .footer-links li a:hover { color: #0dbefd; }
+
+    .footer-bottom {
+        border-top: 1px solid #333; margin-top: 20px; padding-top: 20px;
+        font-size: 12px; color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h3 style="color:white; padding-left:30px; margin-bottom: 20px;">MS MART</h3>
+    
+    <a href="index.html">🏠 Home</a>
+    <a href="my-orders.html">📦 My Orders</a>
+    <a href="cart.html">🛒 Cart</a>
+    
+    <a href="contact.html">📞 Contact Us</a>
+    <a href="about.html">ℹ️ About Us</a>
+    <a href="terms.html">📄 Terms & Conditions</a>
+    <a href="refund.html">💸 Refund Policy</a>
+  </div>
+
+  <div class="topbar">
+    <div style="display:flex; align-items:center;">
+        <span class="menu-icon" onclick="openNav()">&#9776;</span>
+        
+        <a href="index.html" class="logo-container">
+            <img src="images/logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/50?text=Logo'">
+        </a>
+    </div>
+    <div class="top-right">
+      <a href="#" class="icon-btn"><i class="fas fa-search"></i></a> 
+      
+      <a href="login.html" class="login-btn">Login</a> 
+      
+      <a href="cart.html" class="icon-btn cart-icon-box">
+          &#128722; 
+          <span id="cartCountBadge" class="cart-badge">0</span>
+      </a> 
+    </div>
+  </div>
+
+  <section class="h-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">Cart - <span id="headerCount">0</span> items</h5>
+            </div>
+            <div class="card-body" id="cartItemsContainer">
+              <p class="text-center">Loading...</p>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><strong>Expected shipping delivery</strong></p>
+              <p class="mb-0 text-muted">Within 2 - 4 Days</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0">Summary</h5>
+            </div>
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                  Products Total
+                  <span id="subTotal">₹0</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                  Shipping
+                  <span id="shippingCharge" class="text-success">Free</span>
+                </li>
+                <hr>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                  <div>
+                    <strong>Total amount</strong>
+                    <strong><p class="mb-0">(including VAT)</p></strong>
+                  </div>
+                  <span><strong id="grandTotal" style="font-size: 20px; color: #0a8;">₹0</strong></span>
+                </li>
+              </ul>
+
+              <button type="button" onclick="goToCheckout()" class="btn btn-checkout btn-lg">
+                Go to checkout
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+        <img src="images/logo.png" alt="Logo" class="footer-logo-img" onerror="this.style.display='none'">
+        <p>Best Quality, Best Price, Fast Delivery.</p>
+
+        <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="terms.html">Terms</a></li>
+            <li><a href="refund.html">Refund Policy</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 MS MART. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu Functions
+    function openNav() { document.getElementById("mySidenav").style.width = "250px"; }
+    function closeNav() { document.getElementById("mySidenav").style.width = "0"; }
+
+    // --- HELPER: Clean Price ---
+    function parseCurrency(value) {
+        if (!value) return 0;
+        let str = String(value).replace(/[^0-9.]/g, ''); 
+        let num = parseFloat(str);
+        return isNaN(num) ? 0 : num;
+    }
+
+    // --- 1. LOAD CART ---
+    function loadCart() {
+        let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+        const container = document.getElementById("cartItemsContainer");
+        
+        let totalAmount = 0;
+        let totalItems = 0;
+
+        container.innerHTML = "";
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="empty-cart-msg">
+                    <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                    <h4>Your Cart is Empty</h4>
+                    <a href="index.html" class="btn btn-primary mt-3">Shop Now</a>
+                </div>
+            `;
+            updateSummary(0, 0);
+            updateBadge(0);
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            let price = parseCurrency(item.price);
+            let qty = parseCurrency(item.qty);
+            if(qty < 1) qty = 1;
+
+            let itemTotal = price * qty;
+            totalAmount += itemTotal;
+            totalItems += qty;
+
+            const itemHTML = `
+            <div class="row align-items-center">
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img src="${item.image}" class="w-100" alt="${item.name}" onerror="this.src='https://via.placeholder.com/150'" />
+                </div>
+              </div>
+
+              <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                <p><strong>${item.name}</strong></p>
+                <p class="text-muted">Price: ₹${price}</p>
+                <button type="button" class="btn btn-danger btn-sm me-1 mb-2" onclick="removeItem(${index})" title="Remove item">
+                  <i class="fas fa-trash"></i> Remove
+                </button>
+              </div>
+
+              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                <div class="d-flex mb-4" style="max-width: 300px">
+                  <button class="btn btn-primary px-3 me-2" onclick="updateCartQty(${index}, -1)">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <div class="form-outline">
+                    <input min="1" name="quantity" value="${qty}" type="number" class="form-control" readonly />
+                  </div>
+                  <button class="btn btn-primary px-3 ms-2" onclick="updateCartQty(${index}, 1)">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+                <p class="text-start text-md-center"><strong>Total: ₹${itemTotal}</strong></p>
+              </div>
+            </div>
+            <hr class="my-4" />
+            `;
+            container.innerHTML += itemHTML;
+        });
+
+        updateSummary(totalAmount, cart.length);
+        updateBadge(totalItems);
+    }
+
+    // --- 2. UPDATE SUMMARY (With Shipping) ---
+    function updateSummary(productsTotal, count) {
+        let shippingCost = 0;
+        const shippingEl = document.getElementById("shippingCharge");
+
+        if (productsTotal === 0) {
+            shippingCost = 0;
+            shippingEl.innerText = "Free";
+            shippingEl.className = "text-success";
+        } 
+        else if (productsTotal > 1499) {
+            shippingCost = 0;
+            shippingEl.innerText = "Free (Order > ₹1499)";
+            shippingEl.className = "text-success";
+        } 
+        else {
+            shippingCost = 89;
+            shippingEl.innerText = "₹89";
+            shippingEl.className = "text-danger";
+        }
+
+        let finalAmount = productsTotal + shippingCost;
+
+        document.getElementById("subTotal").innerText = "₹" + productsTotal;
+        document.getElementById("grandTotal").innerText = "₹" + finalAmount;
+        document.getElementById("headerCount").innerText = count;
+    }
+
+    // --- 3. UPDATE BADGE ---
+    function updateBadge(total) {
+        const badge = document.getElementById("cartCountBadge");
+        if(badge) {
+            badge.innerText = total;
+            badge.style.display = total > 0 ? "block" : "none";
+        }
+    }
+
+    // --- 4. UPDATE QUANTITY ---
+    window.updateCartQty = (index, change) => {
+        let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+        let currentQty = parseCurrency(cart[index].qty);
+        let newQty = currentQty + change;
+        if (newQty < 1) newQty = 1;
+        cart[index].qty = newQty;
+        localStorage.setItem('ms_cart', JSON.stringify(cart));
+        loadCart();
+    };
+
+    // --- 5. REMOVE ITEM ---
+    window.removeItem = (index) => {
+        if(confirm("Remove this item?")) {
+            let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('ms_cart', JSON.stringify(cart));
+            loadCart();
+        }
+    };
+
+    // --- 6. CHECKOUT LINK ---
+    window.goToCheckout = () => {
+        let cart = JSON.parse(localStorage.getItem('ms_cart')) || [];
+        if(cart.length === 0) {
+            alert("Cart is empty!");
+        } else {
+            window.location.href = "checkout.html";
+        }
+    };
+
+    // Initial Load
+    loadCart();
+
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
