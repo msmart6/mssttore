@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Our Premium Products - msmarts.in | Onion, Spices, Plywood, Footwear</title>
+  <meta name="description" content="Explore premium export-quality products at msmarts.in: Onion, Moringa, Spices, Coconut, Ginger, Cow Dung, Plywood, Footwear, and Carpets.">
+  <meta name="keywords" content="msmarts.in, MS Mart Exports, Indian Onion Export, Moringa Powder, Spices, Coconut, Ginger, Cow Dung, Plywood Export, Footwear Export, Carpet Export">
+  <meta name="author" content="Ramesh - MS MART">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Buy Premium Export Quality Products - msmarts.in">
+  <meta property="og:description" content="We supply Fresh Onion, Moringa, Spices, Coconut, Plywood, Footwear and more globally.">
+  <meta property="og:image" content="images/product1.jpg"> 
+  <meta property="og:url" content="https://msmarts.in/products.html">
+  <meta property="og:type" content="website">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* 🔴 GLOBAL VARIABLES & STYLES */
+    :root {
+      --primary-green: #28a745;
+      --primary-blue: #003366;
+      --text-dark: #333;
+      --white: #ffffff;
+      --curve-radius: 50px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f4f7f9; overflow-x: hidden; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-up { animation: fadeInUp 0.8s ease forwards; }
+
+    @keyframes waveAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    /* 🔴 NAVBAR */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      height: 80px; 
+    }
+    
+    .logo-area { display: flex; align-items: center; text-decoration: none; }
+
+    .brand-logo {
+        height: 150px; 
+        width: auto;
+        object-fit: contain;
+    }
+
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+    .nav-links a:hover { color: var(--primary-green); }
+
+    /* 🔴 PAGE HEADER */
+    .page-header {
+      margin-top: 80px; 
+      background: var(--primary-blue); color: white;
+      text-align: center; padding: 60px 20px; border-bottom-right-radius: var(--curve-radius);
+      border-bottom-left-radius: var(--curve-radius);
+    }
+    .page-header h1 { font-size: 40px; margin-bottom: 10px; }
+    
+    /* 🔴 FILTER BUTTONS */
+    .filter-container {
+      display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 10px 25px; border: 2px solid var(--primary-green); border-radius: 30px;
+      background: transparent; color: var(--primary-green); font-weight: 600; cursor: pointer;
+      transition: 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--primary-green); color: white;
+    }
+
+    /* 🔴 PRODUCT GRID */
+    .products-grid-section { padding: 20px 10%; min-height: 60vh; }
+    .product-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    /* 🔴 PRODUCT CARD */
+    .prod-card {
+      background: white; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08); border: 1px solid #eee;
+      transition: 0.3s; position: relative;
+    }
+    .prod-card:hover { transform: translateY(-10px); border-color: var(--primary-green); }
+
+    .p-img-box { height: 200px; overflow: hidden; position: relative; }
+    .p-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .prod-card:hover .p-img-box img { transform: scale(1.1); }
+
+    .p-info { padding: 20px; text-align: center; }
+    .p-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+    .p-desc { font-size: 13px; color: #777; margin-bottom: 15px; }
+
+    /* Enquiry Button */
+    .enquiry-btn {
+      display: inline-block; width: 100%; padding: 10px 0;
+      background: var(--primary-blue); color: white; text-decoration: none;
+      border-radius: 10px; font-weight: 600; transition: 0.3s;
+    }
+    .enquiry-btn:hover { background: var(--primary-green); }
+    .enquiry-btn i { margin-right: 8px; }
+
+    /* 🔴 COMPACT FOOTER STYLES */
+    .footer { 
+        background: #111; 
+        color: #ccc; 
+        padding: 20px 5%; 
+        margin-top: 20px; 
+        font-size: 14px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; 
+    }
+    .footer h3 { color: var(--white); margin-bottom: 10px; font-size: 16px; }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 5px; }
+    .footer a { text-decoration: none; color: #aaa; transition: 0.3s; }
+    .footer a:hover { color: var(--primary-green); }
+
+    .bottom-bar { 
+        border-top: 1px solid #333; 
+        padding-top: 10px; 
+        margin-top: 15px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        flex-wrap: wrap; 
+        gap: 10px; 
+        font-size: 13px;
+    }
+    
+    /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
+    a.cr-tech { 
+        color: #ff0000 !important; /* Forces Red Color */
+        font-weight: bold; 
+        text-decoration: none; 
+        transition: color 0.3s ease;
+    }
+    a.cr-tech:hover {
+        color: #28a745 !important; /* Forces Green on Hover */
+    }
+    
+    /* 🔴 FLOATING BUTTON */
+    .float-wa {
+      position: fixed;
+      bottom: 55px;
+      right: 30px; 
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 2000;
+      text-decoration: none;
+      animation: waveAnim 2s infinite;
+    }
+
+    /* Social Icons - Compact */
+    .social-icons {
+        display: flex;
+        gap: 15px; 
+        justify-content: center; 
+        align-items: center;
+    }
+    .social-img {
+        width: 30px; /* Reduced Size */
+        height: 30px;
+        object-fit: contain;
+        transition: transform 0.3s ease; 
+        border-radius: 5px; 
+        background: white; 
+        padding: 2px;
+    }
+    .social-icons a:hover .social-img {
+        transform: scale(1.2); 
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
+      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
+      .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
+      .page-header h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+      <a href="index.html" class="logo-area">
+       <img src="images/logo.jpg" alt="MS MART EXPORTS" class="brand-logo wave-effect">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html" style="color:var(--primary-green)">Our Products</a>
+      <a href="shipment.html">Our Shipment</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <header class="page-header animate-up">
+    <h1>Our Premium Products</h1>
+    <p>Export Quality | Organic | Freshly Sourced</p>
+  </header>
+
+  <div class="filter-container animate-up">
+    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+    <button class="filter-btn" onclick="filterProducts('vegetables')">Vegetables</button>
+    <button class="filter-btn" onclick="filterProducts('spices')">Spices</button>
+    <button class="filter-btn" onclick="filterProducts('others')">Others</button>
+  </div>
+
+  <section class="products-grid-section">
+    <div class="product-grid">
+
+      <div class="prod-card animate-up" data-category="vegetables">
+        <div class="p-img-box">
+          <img src="images/product1.jpg" alt="Fresh Onion" onerror="this.src='https://source.unsplash.com/300x200/?onion'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Fresh Onion</div>
+          <div class="p-desc">Origin: Nashik/AP | Size: 50mm+</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Fresh%20Onion" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product2.jpg" alt="Moringa Powder" onerror="this.src='https://source.unsplash.com/300x200/?moringa'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Moringa Powder</div>
+          <div class="p-desc">100% Organic | 80 Mesh</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Moringa%20Powder" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="spices">
+        <div class="p-img-box">
+          <img src="images/product3.jpg" alt="Spices" onerror="this.src='https://source.unsplash.com/300x200/?spices,chilli'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Dehydrated Spices</div>
+          <div class="p-desc">Chilli, Turmeric & Mixed Spices</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Spices" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product4.jpg" alt="Coconut" onerror="this.src='https://source.unsplash.com/300x200/?coconut'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Fresh Coconut</div>
+          <div class="p-desc">Semi Husked | Sweet Water</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Coconut" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="vegetables">
+        <div class="p-img-box">
+          <img src="images/product5.jpg" alt="Ginger" onerror="this.src='https://source.unsplash.com/300x200/?ginger'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Fresh Ginger</div>
+          <div class="p-desc">Washed & Dry | High Quality</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Ginger" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product6.jpg" alt="Cow Dung" onerror="this.src='https://source.unsplash.com/300x200/?soil'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Cow Dung (Organic)</div>
+          <div class="p-desc">Dried Cakes / Fertilizer Powder</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Cow%20Dung" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product7.jpg" alt="Plywood" onerror="this.src='https://source.unsplash.com/300x200/?wood,plywood'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Plywood Sheets</div>
+          <div class="p-desc">High Durability | Commercial Grade</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Plywood" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product8.jpg" alt="Footwear" onerror="this.src='https://source.unsplash.com/300x200/?shoes,sandals'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Fashion Footwear</div>
+          <div class="p-desc">Trendy Designs | Men & Women</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Footwear" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="prod-card animate-up" data-category="others">
+        <div class="p-img-box">
+          <img src="images/product9.jpg" alt="Carpet" onerror="this.src='https://source.unsplash.com/300x200/?carpet,rug'">
+        </div>
+        <div class="p-info">
+          <div class="p-title">Carpets & Rugs</div>
+          <div class="p-desc">Premium Quality | Hand & Machine Made</div>
+          <a href="https://wa.me/919618341676?text=I%20want%20price%20for%20Carpet" target="_blank" class="enquiry-btn">
+            <i class="fab fa-whatsapp"></i> Get Quote
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>Reach Out</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Andhra Pradesh, India</li>
+          <li><i class="fas fa-envelope"></i> exports@msmart.in</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get In Touch</h3>
+        <ul>
+          <li><i class="fas fa-phone"></i> +91 96183 41676</li>
+          <li><i class="fab fa-whatsapp"></i> +91 7780 237206</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="shipment.html">Logistics</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div>&copy; 2026 MS MARTS All Rights Reserved.</div>
+      
+      <div>
+        Designed by 
+        <a href="https://wa.me/917780237206?text=I%20want%20design%20website" target="_blank" class="cr-tech">
+          CR Technologies
+        </a>
+      </div>
+
+       <div class="social-icons">
+        <a href="https://youtube.com/@msr_subbarao?si=eEEz5m82RYX76zL4" target="_blank">
+            <img src="images/youtube.png" alt="YouTube" class="social-img">
+        </a>
+        <a href="https://www.facebook.com/share/17oBzhAqMV/" target="_blank">
+            <img src="images/facebook.png" alt="Facebook" class="social-img">
+        </a>
+        <a href="https://www.instagram.com/msr_shopping1?igsh=ejFlczAyNm56NGFp" target="_blank">
+            <img src="images/instagram.png" alt="Instagram" class="social-img">
+        </a>
+        <a href="https://in.linkedin.com/in/chilaka-ramesh-278786b4" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn" class="social-img">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919618341676?text=I%20want%20export" target="_blank" class="float-wa">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    function filterProducts(category) {
+      // 1. Change Active Button
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        if (btn.innerText.toLowerCase() === category || (category === 'all' && btn.innerText === 'All')) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // 2. Filter Cards
+      const cards = document.querySelectorAll('.prod-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

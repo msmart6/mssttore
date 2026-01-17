@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Global Logistics & Shipment Services - msmarts.in | Sea, Air & Road Cargo</title>
+  <meta name="description" content="Reliable export logistics services by msmarts.in. We offer Sea Cargo (FCL/LCL), Air Freight for perishables, and secure Road Transport with export-standard packaging.">
+  <meta name="keywords" content="msmarts.in, Export Logistics India, Sea Cargo Services, Air Freight Exporter, Road Transport Export, Export Packaging Standards, Mesh Bags Packing, Jute Bags Export, MS Mart Shipment">
+  <meta name="author" content="Ramesh - MS MART">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Secure Shipment & Logistics - msmarts.in">
+  <meta property="og:description" content="We ensure safe delivery via Sea, Air, and Road with premium packaging standards. Visit msmarts.in.">
+  <meta property="og:image" content="images/shipment1.jpg"> 
+  <meta property="og:url" content="https://msmarts.in/shipment.html">
+  <meta property="og:type" content="website">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* 🔴 GLOBAL VARIABLES & STYLES */
+    :root {
+      --primary-green: #28a745;
+      --primary-blue: #003366;
+      --text-dark: #333;
+      --white: #ffffff;
+      --curve-radius: 50px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    body { background: #f4f7f9; overflow-x: hidden; }
+
+    /* Animations */
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-up { animation: fadeInUp 0.8s ease forwards; }
+
+    @keyframes waveAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .wave-effect { animation: waveAnim 3s infinite; }
+
+    /* 🔴 NAVBAR */
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      height: 80px; 
+    }
+    
+    .logo-area { display: flex; align-items: center; text-decoration: none; }
+
+    /* ⭐ FIX: Logo Size Control ⭐ */
+    .brand-logo {
+        height: 150px; 
+        width: auto;
+        object-fit: contain;
+    }
+
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+    .nav-links a:hover { color: var(--primary-green); }
+
+    /* 🔴 PAGE HEADER */
+    .page-header {
+      margin-top: 80px; 
+      background: var(--primary-blue); color: white;
+      text-align: center; padding: 60px 20px; border-bottom-right-radius: var(--curve-radius);
+      border-bottom-left-radius: var(--curve-radius);
+    }
+    .page-header h1 { font-size: 40px; margin-bottom: 10px; }
+
+    /* 🔴 ZIG-ZAG TRANSPORT SECTION */
+    .transport-section { padding: 60px 10%; }
+    
+    .transport-row {
+      display: flex; align-items: center; gap: 50px; margin-bottom: 60px;
+      background: white; padding: 20px; border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .transport-row.reverse { flex-direction: row-reverse; }
+
+    .t-image { flex: 1; height: 300px; overflow: hidden; border-radius: 15px; position: relative; }
+    .t-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+    .transport-row:hover .t-image img { transform: scale(1.1); }
+
+    .t-content { flex: 1; padding: 20px; }
+    .t-content h2 { color: var(--primary-green); font-size: 28px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .t-content p { color: #555; line-height: 1.8; margin-bottom: 15px; font-size: 15px; }
+    .t-specs { background: #f0f8ff; padding: 15px; border-radius: 10px; border-left: 4px solid var(--primary-blue); }
+    .t-specs strong { color: var(--primary-blue); }
+
+    /* 🔴 PROCESS FLOW */
+    .process-section { background: white; padding: 60px 10%; }
+    .section-title { text-align: center; font-size: 32px; color: var(--primary-blue); margin-bottom: 50px; }
+    .process-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; }
+    .process-step { width: 200px; text-align: center; }
+    .step-icon {
+      width: 80px; height: 80px; background: var(--primary-green); color: white;
+      border-radius: 50%; display: flex; justify-content: center; align-items: center;
+      font-size: 30px; margin: 0 auto 20px auto;
+    }
+
+    /* 🔴 PACKAGING STANDARDS */
+    .packing-section { padding: 60px 10%; }
+    .packing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+    .pack-box {
+      background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      border: 1px solid #eee; text-align: center;
+    }
+    .pack-img { height: 180px; background: #ddd; }
+    .pack-img img { width: 100%; height: 100%; object-fit: cover; }
+    .pack-info { padding: 15px; }
+    .pack-info h4 { color: var(--primary-green); }
+
+    /* 🔴 COMPACT FOOTER STYLES */
+    .footer { 
+        background: #111; 
+        color: #ccc; 
+        padding: 20px 5%; 
+        margin-top: 20px; 
+        font-size: 14px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px; 
+    }
+    .footer h3 { color: var(--white); margin-bottom: 10px; font-size: 16px; }
+    .footer ul { list-style: none; }
+    .footer ul li { margin-bottom: 5px; }
+    .footer a { text-decoration: none; color: #aaa; transition: 0.3s; }
+    .footer a:hover { color: var(--primary-green); }
+
+    .bottom-bar { 
+        border-top: 1px solid #333; 
+        padding-top: 10px; 
+        margin-top: 15px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+        flex-wrap: wrap; 
+        gap: 10px; 
+        font-size: 13px;
+    }
+    
+    /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
+    a.cr-tech { 
+        color: #ff0000 !important; /* Forces Red Color */
+        font-weight: bold; 
+        text-decoration: none; 
+        transition: color 0.3s ease;
+    }
+    a.cr-tech:hover {
+        color: #28a745 !important; /* Forces Green on Hover */
+    }
+
+    /* 🔴 FLOATING BUTTON */
+    .float-wa {
+      position: fixed;
+      bottom: 55px;
+      right: 30px; 
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 2000;
+      text-decoration: none;
+      animation: waveAnim 2s infinite;
+    }
+
+    /* Social Icons - Compact */
+    .social-icons {
+        display: flex;
+        gap: 15px; 
+        justify-content: center; 
+        align-items: center;
+    }
+    .social-img {
+        width: 30px; /* Reduced Size */
+        height: 30px;
+        object-fit: contain;
+        transition: transform 0.3s ease; 
+        border-radius: 5px; 
+        background: white; 
+        padding: 2px;
+    }
+    .social-icons a:hover .social-img {
+        transform: scale(1.2); 
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
+      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
+      .transport-row { flex-direction: column !important; text-align: center; } 
+      .t-image { height: 200px; width: 100%; }
+      .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
+      .page-header h1 { font-size: 32px; }
+    } 
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo-area">
+      <img src="images/logo.jpg" alt="MS MART EXPORTS" class="brand-logo wave-effect">
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="products.html">Our Products</a>
+      <a href="shipment.html" style="color:var(--primary-green)">Our Shipment</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <header class="page-header animate-up">
+    <h1>Logistics & Shipment</h1>
+    <p>Safe, Secure, and Timely Delivery Worldwide</p>
+  </header>
+
+  <section class="transport-section">
+    
+    <div class="transport-row animate-up">
+      <div class="t-image">
+        <img src="images/shipment1.jpg" alt="Sea Cargo Shipping Container Export" onerror="this.src='https://source.unsplash.com/600x400/?ship,container'">
+      </div>
+      <div class="t-content">
+        <h2><i class="fas fa-ship"></i> Sea Cargo 
+
+[Image of Sea cargo container ship]
+</h2>
+        <p>We provide reliable sea freight services for bulk orders. Our strong partnerships with leading shipping lines ensure your goods reach any port in the world safely and on time.</p>
+        <div class="t-specs">
+          <p><strong>Container Sizes:</strong> 20ft (approx 28 Tons) & 40ft High Cube.</p>
+          <p><strong>Load Type:</strong> FCL (Full Container Load) & LCL (Less Container Load).</p>
+          <p><strong>Handling:</strong> Temperature controlled reefer containers for Vegetables.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="transport-row reverse animate-up">
+      <div class="t-image">
+        <img src="images/shipment2.jpg" alt="Air Cargo Freight Service Export" onerror="this.src='https://source.unsplash.com/600x400/?air,cargo'">
+      </div>
+      <div class="t-content">
+        <h2><i class="fas fa-plane"></i> Air Cargo 
+
+[Image of air cargo plane]
+</h2>
+        <p>For urgent shipments and highly perishable items, our Air Cargo service is the best choice. We ensure flight connectivity from Hyderabad and Chennai airports within 24-48 hours.</p>
+        <div class="t-specs">
+          <p><strong>Weight Limit:</strong> Minimum 100 Kgs to 5+ Tons per flight.</p>
+          <p><strong>Best For:</strong> Fresh Vegetables, Leafy Greens, and Samples.</p>
+          <p><strong>Customs:</strong> Express clearance for perishable goods.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="transport-row animate-up">
+      <div class="t-image">
+        <img src="images/shipment3.jpg" alt="Road Transport Logistics Truck India" onerror="this.src='https://source.unsplash.com/600x400/?truck,highway'">
+      </div>
+      <div class="t-content">
+        <h2><i class="fas fa-truck"></i> On Road Transport 
+
+[Image of logistics truck]
+</h2>
+        <p>We have a robust domestic logistics network to transport goods from our farms and warehouses to the air/sea ports securely. Our fleet ensures minimal transit damage.</p>
+        <div class="t-specs">
+          <p><strong>Vehicles:</strong> 10 Ton, 14 Ton, and 25 Ton Trucks.</p>
+          <p><strong>Facilities:</strong> GPS Tracking & Tarpaulin Covered / Closed Containers.</p>
+          <p><strong>Connectivity:</strong> Direct farm pickup to Port/Airport drop.</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="process-section animate-up">
+    <h2 class="section-title">Shipment Process</h2>
+    <div class="process-container">
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-file-invoice"></i></div>
+        <h4>1. Order</h4>
+        <p>Confirm Order & PI.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-search-plus"></i></div>
+        <h4>2. Quality</h4>
+        <p>Testing & Grading.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-box"></i></div>
+        <h4>3. Packing 
+
+[Image of shipping boxes]
+</h4>
+        <p>Export Standard Pack.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-stamp"></i></div>
+        <h4>4. Customs</h4>
+        <p>Documentation Clear.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-icon"><i class="fas fa-globe-americas"></i></div>
+        <h4>5. Dispatch</h4>
+        <p>Global Delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="packing-section animate-up">
+    <h2 class="section-title" style="margin-bottom:30px;">Packaging Material</h2>
+    <div class="packing-grid">
+      <div class="pack-box">
+        <div class="pack-img"><img src="images/bag1.jpg" alt="Mesh Bag Packing for Onions" onerror="this.src='https://source.unsplash.com/300x200/?mesh,bag'"></div>
+        <div class="pack-info"><h4>Mesh Bags </h4><p>Onions & Coconuts</p></div>
+      </div>
+      <div class="pack-box">
+        <div class="pack-img"><img src="images/bag2.jpg" alt="Jute Bag Packing for Spices" onerror="this.src='https://source.unsplash.com/300x200/?sack'"></div>
+        <div class="pack-info"><h4>Jute Bags </h4><p>Spices & Rice</p></div>
+      </div>
+      <div class="pack-box">
+        <div class="pack-img"><img src="images/bag3.jpg" alt="Corrugated Box Packing for Vegetables" onerror="this.src='https://source.unsplash.com/300x200/?box'"></div>
+        <div class="pack-info"><h4>Corrugated Box 
+
+[Image of corrugated boxes]
+</h4><p>Ginger & Vegetables</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>Reach Out</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Andhra Pradesh, India</li>
+          <li><i class="fas fa-envelope"></i> exports@msmart.in</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Get In Touch</h3>
+        <ul>
+          <li><i class="fas fa-phone"></i> +91 96183 41676</li>
+          <li><i class="fab fa-whatsapp"></i> +91 7780 237206</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="shipment.html">Logistics</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <div>&copy; 2026 MS MARTS All Rights Reserved.</div>
+      
+      <div>
+        Designed by 
+        <a href="https://wa.me/917780237206?text=I%20want%20design%20website" target="_blank" class="cr-tech">
+          CR Technologies
+        </a>
+      </div>
+
+       <div class="social-icons">
+        <a href="https://youtube.com/@msr_subbarao?si=eEEz5m82RYX76zL4" target="_blank">
+            <img src="images/youtube.png" alt="YouTube" class="social-img">
+        </a>
+        <a href="https://www.facebook.com/share/17oBzhAqMV/" target="_blank">
+            <img src="images/facebook.png" alt="Facebook" class="social-img">
+        </a>
+        <a href="https://www.instagram.com/msr_shopping1?igsh=ejFlczAyNm56NGFp" target="_blank">
+            <img src="images/instagram.png" alt="Instagram" class="social-img">
+        </a>
+        <a href="https://in.linkedin.com/in/chilaka-ramesh-278786b4" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn" class="social-img">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/919618341676?text=I%20want%20shipment%20details" target="_blank" class="float-wa">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+</body>
+</html>
