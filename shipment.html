@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Global Logistics & Shipment Services - msmarts.in | Sea, Air & Road Cargo</title>
-  <meta name="description" content="Reliable export logistics services by msmarts.in. We offer Sea Cargo (FCL/LCL), Air Freight for perishables, and secure Road Transport with export-standard packaging.">
-  <meta name="keywords" content="msmarts.in, Export Logistics India, Sea Cargo Services, Air Freight Exporter, Road Transport Export, Export Packaging Standards, Mesh Bags Packing, Jute Bags Export, MS Mart Shipment">
+  <title>Export Logistics & Shipping Services - MS MART | Sea, Air & Road</title>
+  <meta name="description" content="Secure & reliable export logistics services from India. We offer Sea Cargo (FCL/LCL), Air Freight for perishables, and Custom Clearance services for global trade.">
+  <meta name="keywords" content="Export Logistics India, Sea Cargo Services, Air Freight Exporter, Road Transport Export, Export Packaging, Customs Clearance, Freight Forwarding India, MS Mart Logistics">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
-  <meta property="og:title" content="Secure Shipment & Logistics - msmarts.in">
-  <meta property="og:description" content="We ensure safe delivery via Sea, Air, and Road with premium packaging standards. Visit msmarts.in.">
+  <meta property="og:title" content="Secure Export Logistics - MS MART">
+  <meta property="og:description" content="We ensure safe delivery via Sea, Air, and Road with premium export packaging standards.">
   <meta property="og:image" content="images/shipment1.jpg"> 
   <meta property="og:url" content="https://msmarts.in/shipment.html">
   <meta property="og:type" content="website">
@@ -39,7 +39,7 @@
     @keyframes waveAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     .wave-effect { animation: waveAnim 3s infinite; }
 
-    /* 🔴 NAVBAR */
+    /* 🔴 NAVBAR (Desktop Default) */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -49,7 +49,6 @@
     
     .logo-area { display: flex; align-items: center; text-decoration: none; }
 
-    /* ⭐ FIX: Logo Size Control ⭐ */
     .brand-logo {
         height: 150px; 
         width: auto;
@@ -157,7 +156,7 @@
     /* 🔴 FLOATING BUTTON */
     .float-wa {
       position: fixed;
-      bottom: 55px;
+      bottom: 65px;
       right: 30px; 
       background: #25D366;
       color: white;
@@ -194,15 +193,62 @@
         transform: scale(1.2); 
     }
 
-    /* Responsive */
+    /* ⭐⭐⭐ MOBILE RESPONSIVE MEDIA QUERIES ⭐⭐⭐ */
     @media (max-width: 768px) {
-      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
-      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
-      .transport-row { flex-direction: column !important; text-align: center; } 
+      /* Navbar Adjustment */
+      .navbar { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 10px; 
+        position: fixed;
+      }
+      .brand-logo { height: 80px; } /* Smaller Logo on Mobile */
+      
+      /* Mobile Menu - Scrollable Chips */
+      .nav-links { 
+        display: flex; 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding: 10px 0; 
+        gap: 10px; 
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; 
+      }
+      .nav-links::-webkit-scrollbar { display: none; } 
+      
+      .nav-links a { 
+        background: #f0f0f0; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 14px; 
+        flex-shrink: 0; 
+      }
+      .nav-links a:hover { background: var(--primary-green); color: white; }
+
+      /* Page Header */
+      .page-header { margin-top: 145px; padding: 40px 20px; }
+      .page-header h1 { font-size: 28px; }
+
+      /* Transport Section - Stack Images and Text */
+      .transport-section { padding: 30px 5%; }
+      .transport-row { flex-direction: column !important; text-align: center; gap: 20px; } 
       .t-image { height: 200px; width: 100%; }
+      .t-content h2 { justify-content: center; font-size: 24px; }
+      
+      /* Process Section */
+      .process-section { padding: 30px 5%; }
+      .process-container { gap: 30px; }
+      .process-step { width: 100%; display: flex; align-items: center; gap: 15px; text-align: left; }
+      .step-icon { margin: 0; width: 60px; height: 60px; font-size: 24px; flex-shrink: 0; }
+
+      /* Packing Grid */
+      .packing-section { padding: 30px 5%; }
+      .packing-grid { grid-template-columns: 1fr; } /* 1 Column on Mobile */
+
+      /* Footer */
       .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
-      .page-header h1 { font-size: 32px; }
-    } 
+    }
   </style>
 </head>
 <body>
@@ -232,10 +278,7 @@
         <img src="images/shipment1.jpg" alt="Sea Cargo Shipping Container Export" onerror="this.src='https://source.unsplash.com/600x400/?ship,container'">
       </div>
       <div class="t-content">
-        <h2><i class="fas fa-ship"></i> Sea Cargo 
-
-[Image of Sea cargo container ship]
-</h2>
+        <h2><i class="fas fa-ship"></i> Sea Cargo</h2>
         <p>We provide reliable sea freight services for bulk orders. Our strong partnerships with leading shipping lines ensure your goods reach any port in the world safely and on time.</p>
         <div class="t-specs">
           <p><strong>Container Sizes:</strong> 20ft (approx 28 Tons) & 40ft High Cube.</p>
@@ -250,10 +293,7 @@
         <img src="images/shipment2.jpg" alt="Air Cargo Freight Service Export" onerror="this.src='https://source.unsplash.com/600x400/?air,cargo'">
       </div>
       <div class="t-content">
-        <h2><i class="fas fa-plane"></i> Air Cargo 
-
-[Image of air cargo plane]
-</h2>
+        <h2><i class="fas fa-plane"></i> Air Cargo</h2>
         <p>For urgent shipments and highly perishable items, our Air Cargo service is the best choice. We ensure flight connectivity from Hyderabad and Chennai airports within 24-48 hours.</p>
         <div class="t-specs">
           <p><strong>Weight Limit:</strong> Minimum 100 Kgs to 5+ Tons per flight.</p>
@@ -268,10 +308,7 @@
         <img src="images/shipment3.jpg" alt="Road Transport Logistics Truck India" onerror="this.src='https://source.unsplash.com/600x400/?truck,highway'">
       </div>
       <div class="t-content">
-        <h2><i class="fas fa-truck"></i> On Road Transport 
-
-[Image of logistics truck]
-</h2>
+        <h2><i class="fas fa-truck"></i> On Road Transport</h2>
         <p>We have a robust domestic logistics network to transport goods from our farms and warehouses to the air/sea ports securely. Our fleet ensures minimal transit damage.</p>
         <div class="t-specs">
           <p><strong>Vehicles:</strong> 10 Ton, 14 Ton, and 25 Ton Trucks.</p>
@@ -298,10 +335,7 @@
       </div>
       <div class="process-step">
         <div class="step-icon"><i class="fas fa-box"></i></div>
-        <h4>3. Packing 
-
-[Image of shipping boxes]
-</h4>
+        <h4>3. Packing</h4>
         <p>Export Standard Pack.</p>
       </div>
       <div class="process-step">
@@ -322,18 +356,15 @@
     <div class="packing-grid">
       <div class="pack-box">
         <div class="pack-img"><img src="images/bag1.jpg" alt="Mesh Bag Packing for Onions" onerror="this.src='https://source.unsplash.com/300x200/?mesh,bag'"></div>
-        <div class="pack-info"><h4>Mesh Bags </h4><p>Onions & Coconuts</p></div>
+        <div class="pack-info"><h4>Mesh Bags</h4><p>Onions & Coconuts</p></div>
       </div>
       <div class="pack-box">
         <div class="pack-img"><img src="images/bag2.jpg" alt="Jute Bag Packing for Spices" onerror="this.src='https://source.unsplash.com/300x200/?sack'"></div>
-        <div class="pack-info"><h4>Jute Bags </h4><p>Spices & Rice</p></div>
+        <div class="pack-info"><h4>Jute Bags</h4><p>Spices & Rice</p></div>
       </div>
       <div class="pack-box">
         <div class="pack-img"><img src="images/bag3.jpg" alt="Corrugated Box Packing for Vegetables" onerror="this.src='https://source.unsplash.com/300x200/?box'"></div>
-        <div class="pack-info"><h4>Corrugated Box 
-
-[Image of corrugated boxes]
-</h4><p>Ginger & Vegetables</p></div>
+        <div class="pack-info"><h4>Corrugated Box</h4><p>Ginger & Vegetables</p></div>
       </div>
     </div>
   </section>
