@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>About Us - msmarts.in | Trusted Exporter in Eluru, Andhra Pradesh</title>
-  <meta name="description" content="Learn about msmarts.in (MS MART EXPORTS), a trusted export company based in Eluru. We connect Indian farmers to the global market.">
-  <meta name="keywords" content="msmarts.in, About MS Mart Exports, Export Company Profile Eluru, Best Exporter Andhra Pradesh">
+  <title>About MS MART EXPORTS - Leading Exporter from India | Company Profile</title>
+  <meta name="description" content="Established in Eluru, MS MART EXPORTS is a trusted name in global trade. We connect Indian farmers with international markets, ensuring fair trade and premium quality agricultural exports.">
+  <meta name="keywords" content="About MS Mart Exports, Export Company Profile India, Agricultural Exporter Eluru, MS Mart History, Ramesh MS Mart CEO, Indian Spices Exporter Profile, IEC Certified Exporter">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
-  <meta property="og:title" content="About Us - msmarts.in">
-  <meta property="og:description" content="Bringing India's Finest Treasures to the World. Quality, Trust, and Transparency.">
+  <meta property="og:title" content="About MS MART EXPORTS - Global Trade Partner">
+  <meta property="og:description" content="Connecting Indian agriculture to the world. Quality, Integrity, and Global Standards.">
   <meta property="og:image" content="images/slide3.jpg"> 
   <meta property="og:url" content="https://msmarts.in/about.html">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="business.business">
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* 🔴 SAME GLOBAL STYLES AS INDEX */
+    /* 🔴 GLOBAL VARIABLES & STYLES */
     :root {
       --primary-green: #28a745;
       --primary-blue: #003366;
@@ -42,7 +42,7 @@
     }
     .wave-effect { animation: waveAnim 3s ease-in-out infinite; }
 
-    /* 🔴 HEADER */
+    /* 🔴 NAVBAR (Desktop Default) */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -144,19 +144,19 @@
     
     /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
     a.cr-tech { 
-        color: #28a745 !important; /* Forces Red Color */
+        color: #ff0000 !important; /* Forces Red Color */
         font-weight: bold; 
         text-decoration: none; 
         transition: color 0.3s ease;
     }
     a.cr-tech:hover {
-        color: #ff0000 !important; /* Forces Green on Hover */
+        color: #28a745 !important; /* Forces Green on Hover */
     }
 
     /* 🔴 FLOATING BUTTON */
     .float-wa {
       position: fixed;
-      bottom: 55px;
+      bottom: 65px;
       right: 30px; 
       background: #25D366;
       color: white;
@@ -181,7 +181,7 @@
         align-items: center;
     }
     .social-img {
-        width: 30px;
+        width: 30px; /* Reduced Size */
         height: 30px;
         object-fit: contain;
         transition: transform 0.3s ease; 
@@ -193,12 +193,55 @@
         transform: scale(1.2); 
     }
 
-    /* Responsive */
+    /* ⭐⭐⭐ MOBILE RESPONSIVE MEDIA QUERIES ⭐⭐⭐ */
     @media (max-width: 768px) {
-      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
-      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
-      .story-section { flex-direction: column; text-align: center; }
-      .stats-bar { flex-direction: column; gap: 30px; }
+      /* Navbar Adjustment */
+      .navbar { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 10px; 
+        position: fixed;
+      }
+      .brand-logo { height: 80px; } /* Smaller Logo on Mobile */
+      
+      /* Mobile Menu - Scrollable Chips */
+      .nav-links { 
+        display: flex; 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding: 10px 0; 
+        gap: 10px; 
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; 
+      }
+      .nav-links::-webkit-scrollbar { display: none; } 
+      
+      .nav-links a { 
+        background: #f0f0f0; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 14px; 
+        flex-shrink: 0; 
+      }
+      .nav-links a:hover { background: var(--primary-green); color: white; }
+
+      /* Page Header */
+      .page-header { margin-top: 145px; padding: 40px 20px; }
+      .page-header h1 { font-size: 28px; }
+
+      /* Story Section Stack */
+      .story-section { flex-direction: column; text-align: center; padding: 30px 5%; }
+      .story-text p { text-align: justify; }
+
+      /* Mission Cards Stack */
+      .mission-container { flex-direction: column; padding: 20px 5%; }
+      .mission-card { width: 100%; }
+
+      /* Stats Bar Stack */
+      .stats-bar { flex-direction: column; gap: 30px; padding: 30px 5%; }
+
+      /* Footer */
       .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
     } 
   </style>
