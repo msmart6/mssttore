@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>MS MART EXPORTS - Premium Onion, Moringa & Spices Exporter from India</title>
-  <meta name="description" content="MS MART EXPORTS is a leading exporter based in Eluru. We supply high-quality Fresh Onion, Moringa Powder, Coconut, and Spices worldwide.">
-  <meta name="keywords" content="MS Mart Exports, Onion Export India, Moringa Powder, Spices Exporter, CR Technologies Website">
+  <title>MS MART EXPORTS - Worldwide Exporter | Onion, Moringa, Spices</title>
+  <meta name="description" content="MS MART EXPORTS is a premier worldwide exporter from India. We supply premium quality Fresh Onion, Moringa Powder, Coconut, and Spices globally.">
+  <meta name="keywords" content="MS Mart Exports, Worldwide Exporter India, Onion Exporter, Moringa Powder Export, Spices Export, Global Trade, MS Mart Eluru">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
-  <meta property="og:title" content="MS MART EXPORTS - Global Quality from India">
-  <meta property="og:description" content="Best Exporter of Organic Products like Onion, Moringa, and Spices.">
+  <meta property="og:title" content="MS MART EXPORTS - Worldwide Exporter">
+  <meta property="og:description" content="Delivering premium quality Indian products like Onion, Moringa, and Spices to the world.">
   <meta property="og:image" content="images/slide1.jpg"> 
   <meta property="og:url" content="https://msmarts.in">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="business.business">
   
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -120,23 +120,41 @@
     .strip-item i { font-size: 24px; color: var(--primary-blue); background: white; padding: 15px; border-radius: 50%; box-shadow: 0 5px 10px rgba(0,0,0,0.1); border: 2px solid var(--primary-green); }
     .strip-item p { margin-top: 10px; font-size: 12px; font-weight: 600; }
 
-    /* 🔴 PRODUCTS (Smart Scroll) */
+    /* 🔴 PRODUCTS (Smart Auto Scroll) */
     .products-section { padding: 50px 0; background: #fff; text-align: center; }
     .section-title { font-size: 32px; margin-bottom: 30px; color: var(--text-dark); }
     
-    .scroll-container { width: 100%; overflow-x: hidden; padding: 20px 0; }
+    /* Scroll Container */
+    .scroll-container { 
+        width: 100%; 
+        overflow: hidden; 
+        padding: 20px 0; 
+        position: relative;
+    }
+    
+    /* 🔴 AUTO SCROLL ANIMATION */
     .scroll-track { 
         display: flex; 
         gap: 30px; 
         width: max-content; 
         padding: 0 20px;
+        /* Continuous animation for BOTH mobile and desktop */
+        animation: scrollLeft 25s linear infinite; 
     }
-    .animate-scroll { animation: scrollLeft 25s linear infinite; }
-    .scroll-track:hover { animation-play-state: paused; }
-    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* Pause only when touched or hovered */
+    .scroll-track:hover, .scroll-track:active { 
+        animation-play-state: paused; 
+    }
+
+    /* Moves Left continuously */
+    @keyframes scrollLeft { 
+        0% { transform: translateX(0); } 
+        100% { transform: translateX(-50%); } 
+    }
 
     .product-card {
-      width: 280px; background: var(--white); border-radius: 20px; overflow: hidden;
+      width: 250px; background: var(--white); border-radius: 20px; overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s ease; white-space: normal;
       border: 1px solid #eee; position: relative; flex-shrink: 0;
     }
@@ -203,15 +221,8 @@
     }
     
     /* ⭐ CR Technologies Color Fix ⭐ */
-    a.cr-tech { 
-        color: #ff0000 !important; 
-        font-weight: bold; 
-        text-decoration: none; 
-        transition: color 0.3s ease;
-    }
-    a.cr-tech:hover {
-        color: #28a745 !important; 
-    }
+    a.cr-tech { color: #ff0000 !important; font-weight: bold; text-decoration: none; transition: color 0.3s ease; }
+    a.cr-tech:hover { color: #28a745 !important; }
 
     /* 🔴 FLOATING BUTTON */
     .float-wa {
@@ -253,9 +264,9 @@
         padding: 10px 0; 
         gap: 10px; 
         justify-content: flex-start;
-        -webkit-overflow-scrolling: touch; /* Smooth scroll */
+        -webkit-overflow-scrolling: touch; 
       }
-      .nav-links::-webkit-scrollbar { display: none; } /* Hide scrollbar */
+      .nav-links::-webkit-scrollbar { display: none; } 
       
       .nav-links a { 
         background: #f0f0f0; 
@@ -287,9 +298,13 @@
       .logistics-strip::before { display: none; } /* Hide the line */
       .strip-item { width: 100%; }
 
-      /* Scroll Container for Mobile */
-      .scroll-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .scroll-track { animation: none; justify-content: flex-start; width: max-content; }
+      /* 🔴 MOBILE AUTO SCROLL ADJUSTMENT */
+      /* Ensure animation continues on mobile and hides scrollbar */
+      .scroll-container { overflow-x: hidden; } 
+      .scroll-track { 
+          animation: scrollLeft 20s linear infinite; /* Force animation */
+          justify-content: flex-start; /* Ensure items start from left */
+      }
       
       /* Footer */
       .bottom-bar { flex-direction: column; text-align: center; }
@@ -580,34 +595,13 @@
       observer.observe(el);
     });
 
-    // 3. SMART PRODUCT SCROLL LOGIC
-    function checkProductScroll() {
-        const container = document.getElementById('scrollContainer');
+    // 3. PRODUCT SCROLL LOOP LOGIC
+    // We duplicate the content to make it scroll smoothly without empty space
+    window.addEventListener('load', function() {
         const track = document.getElementById('scrollTrack');
-        
-        // Measure
-        const containerWidth = container.offsetWidth;
-        const trackWidth = track.scrollWidth;
-
-        // If on mobile (or track wider than container), remove animation and let user scroll
-        if (window.innerWidth <= 768) {
-            track.classList.remove('animate-scroll');
-            track.style.justifyContent = 'flex-start';
-        } else {
-            // Desktop behavior
-            if (trackWidth > containerWidth) {
-                track.classList.add('animate-scroll');
-                track.style.justifyContent = 'flex-start';
-            } else {
-                track.classList.remove('animate-scroll');
-                track.style.justifyContent = 'center';
-            }
-        }
-    }
-
-    // Run check on load and resize
-    window.addEventListener('load', checkProductScroll);
-    window.addEventListener('resize', checkProductScroll);
+        const content = track.innerHTML;
+        track.innerHTML = content + content; // Duplicate content for seamless loop
+    });
 
   </script>
 
