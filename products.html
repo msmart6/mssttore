@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Our Premium Products - msmarts.in | Onion, Spices, Plywood, Footwear</title>
-  <meta name="description" content="Explore premium export-quality products at msmarts.in: Onion, Moringa, Spices, Coconut, Ginger, Cow Dung, Plywood, Footwear, and Carpets.">
-  <meta name="keywords" content="msmarts.in, MS Mart Exports, Indian Onion Export, Moringa Powder, Spices, Coconut, Ginger, Cow Dung, Plywood Export, Footwear Export, Carpet Export">
+  <title>Export Product Catalogue - MS MART EXPORTS | Wholesale Supplier India</title>
+  <meta name="description" content="Browse premium export-quality agricultural products. We supply bulk Onion, Moringa, Spices, Coconut, and more to international markets. Best prices for B2B importers.">
+  <meta name="keywords" content="Export Product Catalogue, Bulk Onion Supplier, Moringa Powder Wholesale, Indian Spices Exporter, Coconut Export India, MS Mart Products List">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
-  <meta property="og:title" content="Buy Premium Export Quality Products - msmarts.in">
-  <meta property="og:description" content="We supply Fresh Onion, Moringa, Spices, Coconut, Plywood, Footwear and more globally.">
+  <meta property="og:title" content="Export Product Catalogue - MS MART">
+  <meta property="og:description" content="We supply Fresh Onion, Moringa, Spices, Coconut, and more globally. Check our wholesale catalogue.">
   <meta property="og:image" content="images/product1.jpg"> 
   <meta property="og:url" content="https://msmarts.in/products.html">
   <meta property="og:type" content="website">
@@ -38,7 +38,7 @@
 
     @keyframes waveAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
-    /* 🔴 NAVBAR */
+    /* 🔴 NAVBAR (Desktop Default) */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -83,7 +83,8 @@
     /* 🔴 PRODUCT GRID */
     .products-grid-section { padding: 20px 10%; min-height: 60vh; }
     .product-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Desktop: Big cards */
       gap: 30px;
     }
 
@@ -156,7 +157,7 @@
     /* 🔴 FLOATING BUTTON */
     .float-wa {
       position: fixed;
-      bottom: 55px;
+      bottom: 65px; /* Moved up slightly */
       right: 30px; 
       background: #25D366;
       color: white;
@@ -193,12 +194,68 @@
         transform: scale(1.2); 
     }
 
-    /* Responsive */
+    /* ⭐⭐⭐ MOBILE RESPONSIVE MEDIA QUERIES ⭐⭐⭐ */
     @media (max-width: 768px) {
-      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
-      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
+      /* Navbar Adjustment */
+      .navbar { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 10px; 
+        position: fixed;
+      }
+      .brand-logo { height: 80px; } /* Smaller Logo on Mobile */
+      
+      /* Mobile Menu - Scrollable Chips */
+      .nav-links { 
+        display: flex; 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding: 10px 0; 
+        gap: 10px; 
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; 
+      }
+      .nav-links::-webkit-scrollbar { display: none; } 
+      
+      .nav-links a { 
+        background: #f0f0f0; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 14px; 
+        flex-shrink: 0; 
+      }
+      .nav-links a:hover { background: var(--primary-green); color: white; }
+
+      /* Page Header Adjustment */
+      .page-header { margin-top: 145px; padding: 40px 20px; }
+      .page-header h1 { font-size: 28px; }
+
+      /* Filter Buttons - Scrollable on Mobile */
+      .filter-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0 5%;
+        -webkit-overflow-scrolling: touch;
+      }
+      .filter-container::-webkit-scrollbar { display: none; }
+      .filter-btn { flex-shrink: 0; font-size: 14px; }
+
+      /* 🔴 MOBILE GRID: 2 Columns (App Style) */
+      .products-grid-section { padding: 10px 5%; }
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+        gap: 15px;
+      }
+      .p-img-box { height: 140px; } /* Smaller images */
+      .p-info { padding: 10px; }
+      .p-title { font-size: 14px; }
+      .p-desc { font-size: 11px; margin-bottom: 10px; }
+      .enquiry-btn { font-size: 12px; padding: 8px 0; }
+
+      /* Footer */
       .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
-      .page-header h1 { font-size: 32px; }
     }
   </style>
 </head>
@@ -208,25 +265,26 @@
       <a href="index.html" class="logo-area">
        <img src="images/logo.jpg" alt="MS MART EXPORTS" class="brand-logo wave-effect">
     </a>
+    
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="products.html" style="color:var(--primary-green)">Our Products</a>
       <a href="shipment.html">Our Shipment</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact Us</a>
     </div>
   </nav>
 
   <header class="page-header animate-up">
-    <h1>Our Premium Products</h1>
-    <p>Export Quality | Organic | Freshly Sourced</p>
+    <h1>Export Product Catalogue</h1>
+    <p>Premium Quality | Bulk Supply | Worldwide Shipping</p>
   </header>
 
   <div class="filter-container animate-up">
-    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
-    <button class="filter-btn" onclick="filterProducts('vegetables')">Vegetables</button>
+    <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+    <button class="filter-btn" onclick="filterProducts('vegetables')">Fresh Vegetables</button>
     <button class="filter-btn" onclick="filterProducts('spices')">Spices</button>
-    <button class="filter-btn" onclick="filterProducts('others')">Others</button>
+    <button class="filter-btn" onclick="filterProducts('others')">General Goods</button>
   </div>
 
   <section class="products-grid-section">
@@ -234,7 +292,7 @@
 
       <div class="prod-card animate-up" data-category="vegetables">
         <div class="p-img-box">
-          <img src="images/product1.jpg" alt="Fresh Onion" onerror="this.src='https://source.unsplash.com/300x200/?onion'">
+          <img src="images/product1.jpg" alt="Fresh Onion Export India" onerror="this.src='https://source.unsplash.com/300x200/?onion'">
         </div>
         <div class="p-info">
           <div class="p-title">Fresh Onion</div>
@@ -247,7 +305,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product2.jpg" alt="Moringa Powder" onerror="this.src='https://source.unsplash.com/300x200/?moringa'">
+          <img src="images/product2.jpg" alt="Organic Moringa Powder Export" onerror="this.src='https://source.unsplash.com/300x200/?moringa'">
         </div>
         <div class="p-info">
           <div class="p-title">Moringa Powder</div>
@@ -260,7 +318,7 @@
 
       <div class="prod-card animate-up" data-category="spices">
         <div class="p-img-box">
-          <img src="images/product3.jpg" alt="Spices" onerror="this.src='https://source.unsplash.com/300x200/?spices,chilli'">
+          <img src="images/product3.jpg" alt="Indian Spices Export" onerror="this.src='https://source.unsplash.com/300x200/?spices,chilli'">
         </div>
         <div class="p-info">
           <div class="p-title">Dehydrated Spices</div>
@@ -273,7 +331,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product4.jpg" alt="Coconut" onerror="this.src='https://source.unsplash.com/300x200/?coconut'">
+          <img src="images/product4.jpg" alt="Fresh Coconut Export" onerror="this.src='https://source.unsplash.com/300x200/?coconut'">
         </div>
         <div class="p-info">
           <div class="p-title">Fresh Coconut</div>
@@ -286,7 +344,7 @@
 
       <div class="prod-card animate-up" data-category="vegetables">
         <div class="p-img-box">
-          <img src="images/product5.jpg" alt="Ginger" onerror="this.src='https://source.unsplash.com/300x200/?ginger'">
+          <img src="images/product5.jpg" alt="Fresh Ginger Export" onerror="this.src='https://source.unsplash.com/300x200/?ginger'">
         </div>
         <div class="p-info">
           <div class="p-title">Fresh Ginger</div>
@@ -299,7 +357,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product6.jpg" alt="Cow Dung" onerror="this.src='https://source.unsplash.com/300x200/?soil'">
+          <img src="images/product6.jpg" alt="Cow Dung Powder Export" onerror="this.src='https://source.unsplash.com/300x200/?soil'">
         </div>
         <div class="p-info">
           <div class="p-title">Cow Dung (Organic)</div>
@@ -312,7 +370,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product7.jpg" alt="Plywood" onerror="this.src='https://source.unsplash.com/300x200/?wood,plywood'">
+          <img src="images/product7.jpg" alt="Plywood Sheet Export" onerror="this.src='https://source.unsplash.com/300x200/?wood,plywood'">
         </div>
         <div class="p-info">
           <div class="p-title">Plywood Sheets</div>
@@ -325,7 +383,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product8.jpg" alt="Footwear" onerror="this.src='https://source.unsplash.com/300x200/?shoes,sandals'">
+          <img src="images/product8.jpg" alt="Footwear Export" onerror="this.src='https://source.unsplash.com/300x200/?shoes,sandals'">
         </div>
         <div class="p-info">
           <div class="p-title">Fashion Footwear</div>
@@ -338,7 +396,7 @@
 
       <div class="prod-card animate-up" data-category="others">
         <div class="p-img-box">
-          <img src="images/product9.jpg" alt="Carpet" onerror="this.src='https://source.unsplash.com/300x200/?carpet,rug'">
+          <img src="images/product9.jpg" alt="Carpet Rugs Export" onerror="this.src='https://source.unsplash.com/300x200/?carpet,rug'">
         </div>
         <div class="p-info">
           <div class="p-title">Carpets & Rugs</div>
@@ -416,7 +474,7 @@
       // 1. Change Active Button
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => {
-        if (btn.innerText.toLowerCase() === category || (category === 'all' && btn.innerText === 'All')) {
+        if (btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText.includes('All'))) {
           btn.classList.add('active');
         } else {
           btn.classList.remove('active');
