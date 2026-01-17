@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Contact Us - msmarts.in | Eluru, Andhra Pradesh</title>
-  <meta name="description" content="Get in touch with msmarts.in (MS MART EXPORTS), Eluru. Call +91 96183 41676 for inquiries.">
-  <meta name="keywords" content="msmarts.in, Contact MS Mart Exports, MS Mart Address Eluru, Export Company">
+  <title>Contact MS MART EXPORTS - Global Trade Inquiries | Eluru, India</title>
+  <meta name="description" content="Contact MS MART EXPORTS for bulk orders of Onion, Moringa, Spices, and other agricultural products. We welcome B2B inquiries from global importers. Call +91 96183 41676.">
+  <meta name="keywords" content="Contact MS Mart Exports, Export Inquiries India, Bulk Order Contact, MS Mart Eluru Address, Import Export Contact Number, Ramesh MS Mart Phone">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
-  <meta property="og:title" content="Contact msmarts.in - Global Exporter">
+  <meta property="og:title" content="Contact MS MART EXPORTS - Global Exporter">
   <meta property="og:description" content="Reach out to us for premium export quality products. Located in Eluru, India.">
   <meta property="og:image" content="images/slide1.jpg">
   <meta property="og:url" content="https://msmarts.in/contact.html">
@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* 🔴 GLOBAL STYLES */
+    /* 🔴 GLOBAL VARIABLES & STYLES */
     :root {
       --primary-green: #28a745;
       --primary-blue: #003366;
@@ -39,7 +39,7 @@
     @keyframes waveAnim { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
     .wave-effect { animation: waveAnim 3s infinite; }
 
-    /* 🔴 NAVBAR */
+    /* 🔴 NAVBAR (Desktop Default) */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -119,32 +119,28 @@
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     }
 
-    /* 🔴 COMPACT FOOTER STYLES (UPDATED) */
+    /* 🔴 COMPACT FOOTER STYLES */
     .footer { 
         background: #111; 
         color: #ccc; 
-        padding: 20px 5%; /* Reduced padding from 40px to 20px */
+        padding: 20px 5%; 
         margin-top: 20px; 
         font-size: 14px;
     }
     .footer-grid { 
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-        gap: 20px; /* Reduced gap */
+        gap: 20px; 
     }
-    .footer h3 { 
-        color: var(--white); 
-        margin-bottom: 10px; /* Reduced margin from 20px */
-        font-size: 16px;
-    }
+    .footer h3 { color: var(--white); margin-bottom: 10px; font-size: 16px; }
     .footer ul { list-style: none; }
-    .footer li { margin-bottom: 5px; /* Reduced margin from 10px */ }
+    .footer li { margin-bottom: 5px; }
     .footer a { color: #aaa; text-decoration: none; }
     .footer a:hover { color: var(--primary-green); }
 
     .bottom-bar { 
         border-top: 1px solid #333; 
-        padding-top: 10px; /* Reduced padding */
+        padding-top: 10px; 
         margin-top: 15px; 
         display: flex; 
         justify-content: space-between; 
@@ -153,18 +149,18 @@
         gap: 10px; 
         font-size: 13px;
     }
-     /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
+    
+    /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
     a.cr-tech { 
-        color: #28a745 !important; /* Forces Red Color */
+        color: #ff0000 !important; 
         font-weight: bold; 
         text-decoration: none; 
         transition: color 0.3s ease;
     }
     a.cr-tech:hover {
-        color: #ff0000 !important; /* Forces Green on Hover */
+        color: #28a745 !important; 
     }
 
-    
     /* 🔴 FLOATING BUTTON */
     .float-wa {
       position: fixed;
@@ -185,6 +181,7 @@
       animation: waveAnim 2s infinite;
     }
 
+    /* Social Icons - Compact */
     .social-icons {
         display: flex;
         gap: 15px; 
@@ -192,23 +189,63 @@
         align-items: center;
     }
     .social-img {
-        width: 30px; /* Reduced Size from 100px to 30px */
+        width: 30px; /* Reduced Size */
         height: 30px;
         object-fit: contain;
         transition: transform 0.3s ease; 
         border-radius: 5px; 
-        background: white; /* Added white bg for better visibility if icons are transparent */
+        background: white; 
         padding: 2px;
     }
     .social-icons a:hover .social-img {
         transform: scale(1.2); 
     }
 
-    /* Responsive */
+    /* ⭐⭐⭐ MOBILE RESPONSIVE MEDIA QUERIES ⭐⭐⭐ */
     @media (max-width: 768px) {
-      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
-      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
-      .contact-section { padding: 40px 5%; }
+      /* Navbar Adjustment */
+      .navbar { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 10px; 
+        position: fixed;
+      }
+      .brand-logo { height: 80px; } /* Smaller Logo on Mobile */
+      
+      /* Mobile Menu - Scrollable Chips */
+      .nav-links { 
+        display: flex; 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding: 10px 0; 
+        gap: 10px; 
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; 
+      }
+      .nav-links::-webkit-scrollbar { display: none; } 
+      
+      .nav-links a { 
+        background: #f0f0f0; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 14px; 
+        flex-shrink: 0; 
+      }
+      .nav-links a:hover { background: var(--primary-green); color: white; }
+
+      /* Page Header */
+      .page-header { margin-top: 145px; padding: 40px 20px; }
+      .page-header h1 { font-size: 28px; }
+
+      /* Contact Section - Reduced Padding */
+      .contact-section { padding: 30px 5%; gap: 30px; }
+      
+      /* Form Wrapper */
+      .contact-form-wrapper { padding: 25px; }
+      .form-title { font-size: 20px; text-align: center; }
+
+      /* Footer */
       .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
     } 
   </style>
@@ -339,7 +376,7 @@
     </div>
 
     <div class="bottom-bar">
-      <div>© 2026 MS MARTS All Rights Reserved.</div>
+      <div>&copy; 2026 MS MARTS All Rights Reserved.</div>
       
       <div>
         Designed by 
