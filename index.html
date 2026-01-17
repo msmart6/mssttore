@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>MS MART EXPORTS - Premium Onion, Moringa & Spices Exporter from India</title>
-  <meta name="description" content="MS MART EXPORTS is a leading exporter based in Eluru, Andhra Pradesh. We supply high-quality Fresh Onion, Moringa Powder, Coconut, Dehydrated Spices, and Organic Products worldwide. IEC Certified.">
-  <meta name="keywords" content="MS Mart Exports, Export Company Eluru, Onion Export India, Organic Moringa Powder, Spices Exporter Andhra Pradesh, Fresh Coconut Export, Red Chilli Export, Cow Dung Export, CR Technologies Website">
+  <meta name="description" content="MS MART EXPORTS is a leading exporter based in Eluru. We supply high-quality Fresh Onion, Moringa Powder, Coconut, and Spices worldwide.">
+  <meta name="keywords" content="MS Mart Exports, Onion Export India, Moringa Powder, Spices Exporter, CR Technologies Website">
   <meta name="author" content="Ramesh - MS MART">
   <meta name="robots" content="index, follow">
 
   <meta property="og:title" content="MS MART EXPORTS - Global Quality from India">
-  <meta property="og:description" content="Best Exporter of Organic Products like Onion, Moringa, and Spices. Trusted by Global Clients.">
+  <meta property="og:description" content="Best Exporter of Organic Products like Onion, Moringa, and Spices.">
   <meta property="og:image" content="images/slide1.jpg"> 
   <meta property="og:url" content="https://msmarts.in">
   <meta property="og:type" content="website">
@@ -22,11 +22,11 @@
   <style>
     /* 🔴 VARIABLES & GLOBAL */
     :root {
-      --primary-green: #28a745; /* Green for Active/Top Box */
-      --primary-blue: #003366;  /* Blue for Bottom Box/Footer */
+      --primary-green: #28a745;
+      --primary-blue: #003366;
       --text-dark: #333;
       --white: #ffffff;
-      --curve-radius: 50px; /* Curve Shape */
+      --curve-radius: 50px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
@@ -44,7 +44,7 @@
     .hidden-bottom { opacity: 0; transform: translateY(50px); transition: all 1s ease; }
     .show-anim { opacity: 1; transform: translateX(0) translateY(0); }
 
-    /* 🔴 HEADER */
+    /* 🔴 HEADER (Desktop Default) */
     .navbar {
       display: flex; justify-content: space-between; align-items: center;
       padding: 10px 5%; background: var(--white); position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -54,7 +54,6 @@
     
     .logo-area { display: flex; align-items: center; text-decoration: none; }
     
-    /* ⭐ FIX: Logo Size Control ⭐ */
     .brand-logo {
         height: 150px; 
         width: auto;  
@@ -95,7 +94,6 @@
       box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
     
-    /* Top Green Part */
     .board-top {
       background: var(--primary-green); padding: 30px; color: var(--white);
       display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;
@@ -103,14 +101,13 @@
     .top-stat { text-align: center; }
     .top-stat i { font-size: 30px; margin-bottom: 10px; }
 
-    /* Bottom Blue Part */
     .board-bottom {
       background: var(--primary-blue); padding: 40px; color: var(--white);
       display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;
     }
     .bottom-left h3 { font-size: 28px; margin-bottom: 10px; }
     
-    /* 🔴 LOGISTICS STRIP (Icons Line) */
+    /* 🔴 LOGISTICS STRIP */
     .logistics-strip {
       padding: 40px 10%; display: flex; justify-content: space-between; align-items: center; 
       flex-wrap: wrap; gap: 20px; position: relative;
@@ -205,66 +202,98 @@
         font-size: 13px;
     }
     
-    /* ⭐ CR Technologies Color Fix - Added !important ⭐ */
+    /* ⭐ CR Technologies Color Fix ⭐ */
     a.cr-tech { 
-        color: #ff0000 !important; /* Forces Red Color */
+        color: #ff0000 !important; 
         font-weight: bold; 
         text-decoration: none; 
         transition: color 0.3s ease;
     }
     a.cr-tech:hover {
-        color: #28a745 !important; /* Forces Green on Hover */
+        color: #28a745 !important; 
     }
 
     /* 🔴 FLOATING BUTTON */
     .float-wa {
-      position: fixed;
-      bottom: 65px;
-      right: 30px; 
-      background: #25D366;
-      color: white;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      z-index: 2000;
-      text-decoration: none;
+      position: fixed; bottom: 65px; right: 30px; 
+      background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%;
+      display: flex; justify-content: center; align-items: center; font-size: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; text-decoration: none;
       animation: waveAnim 2s infinite;
     }
 
     /* Social Icons - Compact */
     .social-icons {
-        display: flex;
-        gap: 15px; 
-        justify-content: center; 
-        align-items: center;
+        display: flex; gap: 15px; justify-content: center; align-items: center;
     }
     .social-img {
-        width: 30px; /* Reduced Size */
-        height: 30px;
-        object-fit: contain;
-        transition: transform 0.3s ease; 
-        border-radius: 5px; 
-        background: white; 
-        padding: 2px;
+        width: 30px; height: 30px; object-fit: contain; transition: transform 0.3s ease; 
+        border-radius: 5px; background: white; padding: 2px;
     }
-    .social-icons a:hover .social-img {
-        transform: scale(1.2); 
-    }
+    .social-icons a:hover .social-img { transform: scale(1.2); }
 
-    /* Responsive */
+    /* ⭐⭐⭐ MOBILE RESPONSIVE MEDIA QUERIES ⭐⭐⭐ */
     @media (max-width: 768px) {
-      .navbar { padding: 15px; height: auto; flex-wrap: wrap; } 
-      .nav-links { display: none; width: 100%; text-align: center; padding-top: 20px; } 
-      .about-section { flex-direction: column; text-align: center; }
-      .logistics-strip { flex-direction: column; gap: 30px; }
-      .logistics-strip::before { display: none; }
-      .bottom-bar { flex-direction: column; text-align: center; gap: 10px; }
-      .slide-text h1 { font-size: 32px; }
+      /* Navbar Adjustment */
+      .navbar { 
+        flex-direction: column; 
+        height: auto; 
+        padding: 10px; 
+        position: fixed;
+      }
+      
+      .brand-logo { height: 80px; } /* Smaller Logo on Mobile */
+      
+      /* Mobile Menu - Scrollable Chips */
+      .nav-links { 
+        display: flex; 
+        width: 100%; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+        padding: 10px 0; 
+        gap: 10px; 
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch; /* Smooth scroll */
+      }
+      .nav-links::-webkit-scrollbar { display: none; } /* Hide scrollbar */
+      
+      .nav-links a { 
+        background: #f0f0f0; 
+        padding: 8px 15px; 
+        border-radius: 20px; 
+        font-size: 14px; 
+        flex-shrink: 0; 
+      }
+      .nav-links a:hover { background: var(--primary-green); color: white; }
+
+      /* Adjust Main Content Margin for taller navbar */
+      .hero-section { margin-top: 145px; height: 60vh; } 
+      .slide-text h1 { font-size: 28px; }
+      .slide-text p { font-size: 14px; }
+
+      /* Section Spacing */
+      .about-section, .feature-board-container, .logistics-strip, .products-section { padding: 30px 5%; }
+      
+      /* Typography */
+      .about-text h2, .section-title { font-size: 24px; text-align: center; }
+      .about-text p { font-size: 14px; text-align: justify; }
+
+      /* Feature Board Stacking */
+      .board-top, .board-bottom { flex-direction: column; text-align: center; padding: 20px; }
+      .bottom-right i { font-size: 40px !important; }
+
+      /* Logistics Grid (2 Column Grid for Mobile) */
+      .logistics-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .logistics-strip::before { display: none; } /* Hide the line */
+      .strip-item { width: 100%; }
+
+      /* Scroll Container for Mobile */
+      .scroll-container { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .scroll-track { animation: none; justify-content: flex-start; width: max-content; }
+      
+      /* Footer */
+      .bottom-bar { flex-direction: column; text-align: center; }
+      .map-dot { width: 8px; height: 8px; }
     }
   </style>
 </head>
@@ -276,7 +305,7 @@
     </a>
     
     <div class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="index.html" style="color:var(--primary-green)">Home</a>
       <a href="about.html">About</a>
       <a href="products.html">Our Products</a>
       <a href="shipment.html">Our Shipment</a>
@@ -560,12 +589,19 @@
         const containerWidth = container.offsetWidth;
         const trackWidth = track.scrollWidth;
 
-        if (trackWidth > containerWidth) {
-            track.classList.add('animate-scroll');
+        // If on mobile (or track wider than container), remove animation and let user scroll
+        if (window.innerWidth <= 768) {
+            track.classList.remove('animate-scroll');
             track.style.justifyContent = 'flex-start';
         } else {
-            track.classList.remove('animate-scroll');
-            track.style.justifyContent = 'center';
+            // Desktop behavior
+            if (trackWidth > containerWidth) {
+                track.classList.add('animate-scroll');
+                track.style.justifyContent = 'flex-start';
+            } else {
+                track.classList.remove('animate-scroll');
+                track.style.justifyContent = 'center';
+            }
         }
     }
 
